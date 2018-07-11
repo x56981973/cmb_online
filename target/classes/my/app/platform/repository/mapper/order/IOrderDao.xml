@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="my.app.platform.repository.mapper.order.IOrderDao">
+    <select id="queryAllOrder" resultType="my.app.platform.domain.view.OrderDetail">
+        SELECT * FROM order_detail
+        ORDER BY date DESC, o_id DESC
+    </select>
+
+    <select id="queryOrderByCID" parameterType="String" resultType="my.app.platform.domain.view.OrderDetail">
+        SELECT * FROM order_detail
+        WHERE c_id = #{c_id}
+        ORDER BY date DESC, o_id DESC
+    </select>
+
+    <select id="queryOrderBySID" parameterType="String" resultType="my.app.platform.domain.view.OrderDetail">
+        SELECT * FROM order_detail
+        WHERE s_id = #{s_id}
+        ORDER BY date DESC, o_id DESC
+    </select>
+
+    <insert id="insertOrder" parameterType="my.app.platform.domain.Order">
+        INSERT INTO
+        order (o_id, date, price, c_id, s_id, payment, status, city, address, postcode, mobile)
+        VALUES (#{o_id}, #{date}, #{price}, #{c_id}, #{s_id}, #{payment}, #{status}, #{city}, #{address}, #{postcode}, #{mobile})
+    </insert>
+
+    <update id="updateOrder" parameterType="my.app.platform.domain.Order">
+        UPDATE order
+        SET
+        status = #{status}
+        WHERE o_id = #{o_id}
+    </update>
+
+    <insert id="insertOrderItem" parameterType="my.app.platform.domain.Order_Item">
+        INSERT INTO
+        order (o_id, i_id, num, per_price)
+        VALUES (#{o_id}, #{i_id}, #{num}, #{per_price})
+    </insert>
+</mapper>
