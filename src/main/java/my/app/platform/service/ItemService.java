@@ -18,6 +18,10 @@ public class ItemService {
     @Autowired
     IItemDao itemDao;
 
+    public List<ItemDetail> queryAllItem(){
+        return itemDao.queryAllItem();
+    }
+
     /**
      * 根据商品编号查询
      * @param i_id 商品编号
@@ -63,5 +67,13 @@ public class ItemService {
      */
     public int addItem(Item item){
         return itemDao.addItem(item);
+    }
+
+    /**
+     * 获取总数
+     * @return 总数
+     */
+    public int count(){
+        return itemDao.queryAllItem().size();
     }
 }

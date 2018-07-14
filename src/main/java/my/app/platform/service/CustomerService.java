@@ -21,7 +21,7 @@ public class CustomerService {
     @Autowired
     ICartDao cartDao;
 
-    public int addCustomer(Customer customer){
+    public int insertCustomer(Customer customer){
         int result = customerDao.insertCustomer(customer);
         if (result == 1){
             Customer c = queryCustomerByUsername(customer.getUsername());
@@ -56,5 +56,13 @@ public class CustomerService {
         } else {
             return customerList.get(0);
         }
+    }
+
+    public int deleteCustomer(String username){
+        return customerDao.deleteCustomer(username);
+    }
+
+    public int count(){
+        return customerDao.queryAllCustomer().size();
     }
 }

@@ -1,8 +1,0 @@
-my/app/platform/domain/Admin.class
-my/app/platform/controller/LoginController.class
-my/app/platform/domain/Item.class
-my/app/platform/domain/ItemClass.class
-my/app/platform/domain/Order.class
-my/app/platform/domain/User.class
-my/app/platform/domain/Customer.class
-my/app/platform/domain/Seller.class

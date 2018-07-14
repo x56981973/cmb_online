@@ -14,9 +14,9 @@ import java.util.List;
 public interface IOrderDao {
     List<OrderDetail> queryAllOrder();
 
-    List<OrderDetail> queryOrderByCID(String c_id);
+    List<OrderDetail> queryOrderByCID(String username);
 
-    List<OrderDetail> queryOrderBySID(String s_id);
+    List<OrderDetail> queryOrderBySID(String username);
 
     int insertOrder(Order order);
 

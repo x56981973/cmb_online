@@ -30,21 +30,14 @@
         address = #{address},
         postcode = #{postcode},
         mobile = #{mobile},
-        default_payment = #{default_payment}
+        default_payment = #{default_payment},
+        status = #{status}
         WHERE
         username = #{username}
     </update>
 
-    <update id="updateStatus">
-        UPDATE customer
-        SET
-        status = #{1}
-        WHERE
-        c_id = #{0}
-    </update>
-
     <delete id="deleteCustomer">
         DELETE FROM customer
-        WHERE c_id = #{c_id}
+        WHERE username = #{username}
     </delete>
 </mapper>

@@ -7,6 +7,11 @@ package my.app.platform.domain;
  */
 public class LoginRecord {
     /**
+     * 编号
+     */
+    private String id;
+
+    /**
      * 用户名
      */
     private String username;
@@ -20,6 +25,14 @@ public class LoginRecord {
      * 登陆ip地址
      */
     private String ip_address;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;

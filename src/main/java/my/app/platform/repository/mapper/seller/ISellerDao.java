@@ -12,13 +12,11 @@ import java.util.List;
 public interface ISellerDao {
     List<Seller> queryAllSeller();
 
-    List<Seller> querySeller(String s_id);
+    List<Seller> querySeller(String username);
 
     int insertSeller(Seller seller);
 
     int updateSeller(Seller seller);
 
-    int updateStatus(String s_id, int status);
-
-    int deleteSeller(String s_id);
+    int deleteSeller(String username);
 }

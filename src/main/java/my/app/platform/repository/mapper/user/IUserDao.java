@@ -10,11 +10,8 @@ import java.util.List;
  *         创建说明：用户账号信息
  */
 public interface IUserDao {
-    /**
-     * 登陆验证
-     * @param username 用户名
-     * @param password 密码
-     * @return 用户列表
-     */
+
     List<User> checkLogin(String username, String password);
+
+    List<User> queryUserByUsername(String username);
 }

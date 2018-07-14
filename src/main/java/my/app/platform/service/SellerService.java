@@ -20,11 +20,11 @@ public class SellerService {
 
     /**
      * 查询商家
-     * @param s_id 商家id
+     * @param username 用户名
      * @return 商家信息
      */
-    public Seller querySellerBySID(String s_id){
-        List<Seller> sellerList = sellerDao.querySeller(s_id);
+    public Seller querySellerByUsername(String username){
+        List<Seller> sellerList = sellerDao.querySeller(username);
         if (sellerList.size() != 0){
             return sellerList.get(0);
         } else {
@@ -32,7 +32,7 @@ public class SellerService {
         }
     }
 
-    public List<Seller> queryAllSeller(String s_id){
+    public List<Seller> queryAllSeller(){
         return sellerDao.queryAllSeller();
     }
 
@@ -44,11 +44,11 @@ public class SellerService {
         return sellerDao.updateSeller(seller);
     }
 
-    public int updateStatus(String s_id, int status){
-        return sellerDao.updateStatus(s_id, status);
+    public int deleteSeller(String username){
+        return sellerDao.deleteSeller(username);
     }
 
-    public int deleteSeller(String s_id){
-        return sellerDao.deleteSeller(s_id);
+    public int count(){
+        return sellerDao.queryAllSeller().size();
     }
 }

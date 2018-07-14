@@ -21,6 +21,9 @@ public class OrderDetail {
     //卖家编号
     private String s_id;
 
+    //卖家用户名
+    private String s_username;
+
     //卖家名
     private String s_name;
 
@@ -38,6 +41,9 @@ public class OrderDetail {
 
     //买家编号
     private String c_id;
+
+    //买家用户名
+    private String c_username;
 
     //买家姓名
     private String c_name;
@@ -180,5 +186,21 @@ public class OrderDetail {
 
     public void setPer_price(String per_price) {
         this.per_price = per_price;
+    }
+
+    public String getS_username() {
+        return s_username;
+    }
+
+    public void setS_username(String s_username) {
+        this.s_username = s_username;
+    }
+
+    public String getC_username() {
+        return c_username;
+    }
+
+    public void setC_username(String c_username) {
+        this.c_username = c_username;
     }
 }

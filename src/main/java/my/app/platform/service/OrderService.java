@@ -38,10 +38,10 @@ public class OrderService {
         }
     }
 
-    public List<MOrder> queryOrderByCustomerID(String c_id){
+    public List<MOrder> queryOrderByCustomer(String username){
         List<MOrder> mOrderList = new ArrayList<>();
 
-        List<OrderDetail> orderDetailList = orderDao.queryOrderByCID(c_id);
+        List<OrderDetail> orderDetailList = orderDao.queryOrderByCID(username);
         if (orderDetailList.size() == 0){
             return mOrderList;
         } else {
@@ -49,10 +49,10 @@ public class OrderService {
         }
     }
 
-    public List<MOrder> queryOrderBySellerID(String s_id){
+    public List<MOrder> queryOrderBySeller(String username){
         List<MOrder> mOrderList = new ArrayList<>();
 
-        List<OrderDetail> orderDetailList = orderDao.queryOrderBySID(s_id);
+        List<OrderDetail> orderDetailList = orderDao.queryOrderBySID(username);
         if (orderDetailList.size() == 0){
             return mOrderList;
         } else {
@@ -73,8 +73,10 @@ public class OrderService {
                 mOrder.setTotal_price(orderDetail.getTotal_price());
                 mOrder.setPayment(orderDetail.getPayment());
                 mOrder.setS_id(orderDetail.getS_id());
+                mOrder.setS_username(orderDetail.getS_username());
                 mOrder.setS_name(orderDetail.getS_name());
                 mOrder.setC_id(orderDetail.getC_id());
+                mOrder.setC_username(orderDetail.getC_username());
                 mOrder.setC_name(orderDetail.getC_name());
                 mOrder.setC_city(orderDetail.getC_city());
                 mOrder.setC_address(orderDetail.getC_address());
@@ -143,5 +145,9 @@ public class OrderService {
 
     public int updateOrder(Order order){
         return orderDao.updateOrder(order);
+    }
+
+    public int count(){
+        return orderDao.queryAllOrder().size();
     }
 }

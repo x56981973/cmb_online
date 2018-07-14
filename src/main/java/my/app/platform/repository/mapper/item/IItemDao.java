@@ -11,6 +11,8 @@ import java.util.List;
  *         创建说明：
  */
 public interface IItemDao {
+    List<ItemDetail> queryAllItem();
+
     List<ItemDetail> queryItemByIId(String i_id);
 
     List<ItemDetail> queryItemBySId(String s_id);

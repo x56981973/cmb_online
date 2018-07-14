@@ -5,4 +5,9 @@
         SELECT * FROM user
         WHERE username = #{0} AND password = #{1}
     </select>
+
+    <select id="queryUserByUsername" parameterType="String" resultType="my.app.platform.domain.view.User">
+        SELECT * FROM user
+        WHERE username = #{username}
+    </select>
 </mapper>

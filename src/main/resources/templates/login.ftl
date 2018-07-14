@@ -58,7 +58,7 @@
 			                        	<input type="password" name="password" placeholder="Password..." class="form-password form-control" id="password">
 			                        </div>
                                     <div id="loginMsg" class="col-lg-12" style="padding: 6px;display: none;"></div>
-			                        <button type="submit" class="btn" >登陆</button>
+			                        <button type="submit" class="btn" >提交</button>
 			                    </form>
 		                    </div>
                         </div>

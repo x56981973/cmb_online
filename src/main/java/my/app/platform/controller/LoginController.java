@@ -1,7 +1,7 @@
 package my.app.platform.controller;
 
 import my.app.platform.domain.view.User;
-import my.app.platform.service.LoginService;
+import my.app.platform.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -24,7 +24,7 @@ public class LoginController {
     private HttpSession session;
 
     @Autowired
-    private LoginService loginService;
+    private UserService loginService;
 
     @Value("${session.interval}")
     int sessionInterval;
@@ -92,7 +92,7 @@ public class LoginController {
             } else if("customer".equals(role)){
                 return "{\"error\":\"0\",\"msg\":\"登陆成功\",\"to\":\"/customer\"}";
             } else if ("admin".equals(role)){
-                loginService.insertLoginRecord(request, username); //管理员登陆记录
+//                loginService.insertLoginRecord(request, username); //管理员登陆记录
                 return "{\"error\":\"0\",\"msg\":\"登陆成功\",\"to\":\"/admin/home\"}";
             } else {
                 return "{\"error\":\"1\",\"msg\":\"未知权限，请联系管理员\",\"to\":\"/login\"}";

@@ -5,14 +5,14 @@
         SELECT * FROM login_record
         WHERE username = #{username}
         ORDER BY id DESC
-        limit 1,10
+        limit 0,10
     </select>
 
     <select id="queryOptionRecord" parameterType="String" resultType="my.app.platform.domain.OptionRecord">
         SELECT * FROM option_record
         WHERE username = #{username}
         ORDER BY id DESC
-        limit 0,8
+        limit 0,10
     </select>
 
     <insert id="insertLoginRecord" parameterType="my.app.platform.domain.LoginRecord">

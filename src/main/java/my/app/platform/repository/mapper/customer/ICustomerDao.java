@@ -20,7 +20,5 @@ public interface ICustomerDao {
 
     int updateCustomer(Customer customer);
 
-    int updateStatus(String c_id, int status);
-
-    int deleteCustomer(String c_id);
+    int deleteCustomer(String username);
 }

@@ -7,7 +7,7 @@
 
     <select id="querySeller" parameterType="String" resultType="my.app.platform.domain.Seller">
         SELECT * FROM seller
-        WHERE s_id = #{s_id}
+        WHERE username = #{username}
     </select>
 
     <insert id="insertSeller" parameterType="my.app.platform.domain.Seller">
@@ -21,21 +21,14 @@
         SET
         name = #{name},
         password = #{password},
-        address = #{address}
+        address = #{address},
+        status = #{status}
         WHERE
         username = #{username}
     </update>
 
-    <update id="updateStatus">
-        UPDATE seller
-        SET
-        status = #{1}
-        WHERE
-        s_id = #{0}
-    </update>
-
     <delete id="deleteSeller">
         DELETE FROM seller
-        WHERE s_id = #{0}
+        WHERE username = #{0}
     </delete>
 </mapper>

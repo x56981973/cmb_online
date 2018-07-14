@@ -3,17 +3,19 @@ package my.app.platform.controller;
 import my.app.framework.web.Result;
 import my.app.framework.web.ResultHelper;
 import my.app.platform.domain.Customer;
+import my.app.platform.domain.OptionRecord;
+import my.app.platform.domain.Seller;
 import my.app.platform.repository.mapper.admin.IAdminDao;
 import my.app.platform.repository.mapper.seller.ISellerDao;
 import my.app.platform.repository.mapper.user.IUserDao;
-import my.app.platform.service.CartService;
-import my.app.platform.service.CustomerService;
-import my.app.platform.service.ItemService;
-import my.app.platform.service.OrderService;
+import my.app.platform.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.swing.text.html.Option;
 
 /**
  * @author 夏之阳
@@ -35,6 +37,9 @@ public class TestController {
     ISellerDao sellerDao;
 
     @Autowired
+    SellerService sellerService;
+
+    @Autowired
     ItemService itemService;
 
     @Autowired
@@ -43,8 +48,11 @@ public class TestController {
     @Autowired
     OrderService orderService;
 
+    @Autowired
+    LogService logService;
+
     @RequestMapping(value = "/test", method = RequestMethod.POST)
-    public Result testHandler(Customer customer) {
-        return ResultHelper.newSuccessResult(customerService.updateCustomer(customer));
+    public Result testHandler(Seller seller) {
+        return ResultHelper.newSuccessResult(sellerService.updateSeller(seller));
     }
 }

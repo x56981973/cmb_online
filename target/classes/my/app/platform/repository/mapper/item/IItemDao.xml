@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="my.app.platform.repository.mapper.item.IItemDao">
+    <select id="queryAllItem" resultType="my.app.platform.domain.view.ItemDetail">
+        SELECT * FROM item_detail
+    </select>
+
     <select id="queryItemByIId" parameterType="String" resultType="my.app.platform.domain.view.ItemDetail">
         SELECT * FROM item_detail
         WHERE i_id = #{i_id}

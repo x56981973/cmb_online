@@ -25,6 +25,9 @@ public class MOrder {
     //卖家编号
     private String s_id;
 
+    //卖家用户名
+    private String s_username;
+
     //卖家名
     private String s_name;
 
@@ -39,6 +42,9 @@ public class MOrder {
 
     //买家编号
     private String c_id;
+
+    //买家用户名
+    private String c_username;
 
     //买家姓名
     private String c_name;
@@ -173,5 +179,21 @@ public class MOrder {
 
     public void setC_mobile(String c_mobile) {
         this.c_mobile = c_mobile;
+    }
+
+    public String getS_username() {
+        return s_username;
+    }
+
+    public void setS_username(String s_username) {
+        this.s_username = s_username;
+    }
+
+    public String getC_username() {
+        return c_username;
+    }
+
+    public void setC_username(String c_username) {
+        this.c_username = c_username;
     }
 }
