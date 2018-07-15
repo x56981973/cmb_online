@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author 夏之阳
@@ -49,7 +50,7 @@ public class TestController {
     AdminService adminService;
 
     @RequestMapping(value = "/test", method = RequestMethod.POST)
-    public Result testHandler(String username, String name, String password) {
-        return ResultHelper.newSuccessResult(adminService.updateAccountPwd(username, name, password));
+    public Result testHandler(MultipartFile pic, String i_id, String username) {
+        return ResultHelper.newSuccessResult(itemService.updatePic(pic, i_id, username));
     }
 }

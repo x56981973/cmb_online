@@ -169,10 +169,6 @@
                             </#if>
                             </select>
                         </div>
-                        <#--<div class="col-md-12 form-group1">-->
-                            <#--<label class="control-label">图片上传</label>-->
-                            <#--<input type="file" id="pic" name="pic">-->
-                        <#--</div>-->
                         <div class="clearfix"> </div>
                     </div>
                 </form>
@@ -234,88 +230,6 @@
         });
     });
 </script>
-
-<#--<div class="modal fade" id="picModal" tabindex="-1" role="dialog" aria-labelledby="picModalLabel">-->
-    <#--<div class="modal-dialog">-->
-        <#--<div class="modal-content">-->
-            <#--<div class="modal-header">-->
-                <#--<button type="button" class="close" data-dismiss="modal">×</button>-->
-                <#--<h4 id="title"></h4>-->
-            <#--</div>-->
-            <#--<div class="modal-body">-->
-                <#--<div class="col-md-12 form-group1">-->
-                    <#--<label class="control-label">原图片</label>-->
-                    <#--<div>-->
-                        <#--<img id="origin">-->
-                    <#--</div>-->
-                <#--</div>-->
-                <#--<div class="clearfix" style="margin-bottom: 20px"> </div>-->
-                <#--<form class="form-horizontal" id="fileUpload" enctype="multipart/form-data" method="post">-->
-                    <#--<div class="col-md-12 form-group1">-->
-                        <#--<label class="control-label">图片上传</label>-->
-                        <#--<input type="file" id="pic" name="pic">-->
-                    <#--</div>-->
-                    <#--<div class="form-actions">-->
-                        <#--<button type="submit" class="btn btn-primary">上传</button>-->
-                        <#--<button type="reset" id="reset" class="btn">取消</button>-->
-                    <#--</div>-->
-                <#--</form>-->
-                <#--<div class="clearfix"> </div>-->
-            <#--</div>-->
-            <#--&lt;#&ndash;<div class="modal-footer">&ndash;&gt;-->
-                <#--&lt;#&ndash;<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>&ndash;&gt;-->
-                <#--&lt;#&ndash;<a class="btn btn-primary" id="postPic">确认</a>&ndash;&gt;-->
-            <#--&lt;#&ndash;</div>&ndash;&gt;-->
-        <#--</div>-->
-    <#--</div>-->
-<#--</div>-->
-
-<#--<script type="text/javascript">-->
-
-    <#--$("#picModal").on("show.bs.modal", function (event) {-->
-        <#--var button = $(event.relatedTarget);-->
-        <#--var i_id = button.data("id");-->
-        <#--var description = button.data("description");-->
-        <#--var detail = button.data("detail");-->
-
-        <#--var modal = $(this);-->
-        <#--modal.find('#title').val("修改商品: " + description);-->
-        <#--modal.find('#description').val(description);-->
-        <#--modal.find('#origin').attr('src','${base}/pic/'+detail);-->
-
-    <#--});-->
-
-    <#--$("#postPic").click(function(){-->
-        <#--var i_id = $('#i_id').val();-->
-        <#--var description = $('#description').val();-->
-        <#--var price = $('#price').val();-->
-        <#--var stock = $('#stock').val();-->
-        <#--var class_id = $('#class_name option:selected').val();-->
-
-        <#--$.ajax({-->
-            <#--url: '${base}/admin/item/update',-->
-            <#--type: 'POST',-->
-            <#--data: $.param({'i_id':i_id,'description':description,'price':price,-->
-                <#--'stock':stock,'class_id':class_id}),-->
-            <#--success: function (result) {-->
-                <#--var data = eval("(" + result + ")");-->
-                <#--if (data.error == 0) {-->
-                    <#--swal({-->
-                                <#--title: data.msg,-->
-                                <#--text: "",-->
-                                <#--type: "success",-->
-                                <#--confirmButtonText: "确认"-->
-                            <#--},-->
-                            <#--function(){-->
-                                <#--location.reload();-->
-                            <#--});-->
-                <#--} else {-->
-                    <#--swal(data.msg,"","error");-->
-                <#--}-->
-            <#--}-->
-        <#--});-->
-    <#--});-->
-<#--</script>-->
 
 <link rel="stylesheet" type="text/css" href="${base}/backend/DataTables/datatables.min.css"/>
 <script type="text/javascript" src="${base}/backend/DataTables/datatables.min.js"></script>

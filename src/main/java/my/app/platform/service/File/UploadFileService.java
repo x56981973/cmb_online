@@ -31,7 +31,8 @@ public class UploadFileService {
     public String uploadPic(MultipartFile file, String username){
         if (!file.isEmpty()) {
             try {
-                String folderPath = path + username + "/";
+//                String path =  UploadFileService.class.getClassLoader().getResource("").getPath() + "static/";
+                String folderPath = path + "pic/" + username + "/";
 
                 //如果路径不存在，则创建
                 File newFile = new File(folderPath);
@@ -40,16 +41,16 @@ public class UploadFileService {
                 }
 
                 String fileName = file.getOriginalFilename();
-                Date date = new Date();
-                DateFormat format = new SimpleDateFormat("yyyyMMdd");
-                String time = format.format(date);
-                int index = fileName.lastIndexOf(".");
-                String subString = fileName.substring(0, index);
-                String newFileName = subString + "_" + time + fileName.substring(index);
+//                Date date = new Date();
+//                DateFormat format = new SimpleDateFormat("yyyyMMdd");
+//                String time = format.format(date);
+//                int index = fileName.lastIndexOf(".");
+//                String subString = fileName.substring(0, index);
+//                String newFileName = subString + "_" + time + fileName.substring(index);
 
-                String filePath = folderPath + newFileName;
+                String filePath = folderPath + fileName;
                 file.transferTo(new File(filePath));
-                return filePath;
+                return "pic/" + username + "/" + fileName;
             } catch (Exception e) {
                 return "";
             }

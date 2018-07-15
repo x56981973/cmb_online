@@ -42,7 +42,7 @@
 
                             <label class="col-sm-2 control-label hor-form">原图片</label>
                             <div class="col-sm-8">
-                                <img src="${base}/pic/${i.detail}">
+                                <img src="${base}/${i.detail}" height="180" width="180">
                             </div>
                             <div class="clearfix" style="margin-bottom: 20px"> </div>
 
@@ -56,7 +56,7 @@
                         <div class="panel-footer">
                             <div class="row">
                                 <div class="col-sm-8 col-sm-offset-2">
-                                    <button type="submit" class="btn btn-primary">保存设置</button>
+                                    <button type="submit" class="btn btn-primary" id="postPic">保存设置</button>
                                     <button type="reset" class="btn">取消</button>
                                 </div>
                             </div>
@@ -70,19 +70,34 @@
 </div>
 
 <script type="text/javascript">
-    var options = {
-        url: '${base}/admin/item/updatePic',
-        success: function (result) {
-            var data = eval("(" + result + ")");
-            if (data.error == 0) {
-                swal(data.msg,"","success");
-            } else {
-                swal(data.msg,"","error");
-            }
-        }
-    };
+    $("#postPic").click(function(){
 
-    $('#updateItem').ajaxForm(options);
+        var form = new FormData(document.getElementById("updateItem"));
+        $.ajax({
+            url: '${base}/admin/item/updatePic',
+            type: 'POST',
+            data: form,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (result) {
+                var data = eval("(" + result + ")");
+                if (data.error == 0) {
+                    swal({
+                                title: data.msg,
+                                text: "",
+                                type: "success",
+                                confirmButtonText: "确认"
+                            },
+                            function(){
+                                window.location.href = "${base}" + "/admin/item"
+                            });
+                } else {
+                    swal(data.msg,"","error");
+                }
+            }
+        });
+    });
 </script>
 
 
