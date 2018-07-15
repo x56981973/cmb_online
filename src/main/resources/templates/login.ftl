@@ -30,8 +30,7 @@
                             <h1><strong>简 化 网 上 电 子 商 务 系 统 </strong> </h1>
                             <div class="description">
                             	<p>
-	                            	使用中如有任何问题，可联系
-                                    <a href="#"><strong>夏之阳: x56981973@sjtu.edu.cn</strong></a>
+                                    <a href="#"><strong> 夏之阳: x56981973@sjtu.edu.cn</strong></a>
                             	</p>
                             </div>
                         </div>

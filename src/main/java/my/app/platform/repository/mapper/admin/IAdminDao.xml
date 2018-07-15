@@ -7,7 +7,23 @@
 
     <select id="queryAdmin" parameterType="String" resultType="my.app.platform.domain.Admin">
         SELECT * FROM admin
-        WHERE a_id = #{a_id}
+        WHERE username = #{username}
     </select>
 
+    <update id="updateAdminPwd" parameterType="String">
+        UPDATE admin
+        SET
+        name = #{1},
+        password = #{2}
+        WHERE
+        username = #{0}
+    </update>
+
+    <update id="updateAdminName" parameterType="String">
+        UPDATE admin
+        SET
+        name = #{1}
+        WHERE
+        username = #{0}
+    </update>
 </mapper>

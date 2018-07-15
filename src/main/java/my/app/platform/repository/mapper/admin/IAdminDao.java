@@ -12,5 +12,9 @@ import java.util.List;
 public interface IAdminDao {
     List<Admin> queryAllAdmin();
 
-    List<Admin> queryAdmin(String a_id);
+    List<Admin> queryAdmin(String username);
+
+    int updateAdminPwd(String username, String name, String password);
+
+    int updateAdminName(String username, String name);
 }

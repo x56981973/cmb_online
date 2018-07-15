@@ -11,3 +11,7 @@ exp-platform:
 
 session:
   interval: 900
+
+upload:
+  file:
+    path: pic/

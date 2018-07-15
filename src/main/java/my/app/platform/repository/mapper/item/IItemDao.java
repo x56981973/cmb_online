@@ -1,6 +1,7 @@
 package my.app.platform.repository.mapper.item;
 
 import my.app.platform.domain.Item;
+import my.app.platform.domain.ItemClass;
 import my.app.platform.domain.view.ItemDetail;
 
 import java.util.List;
@@ -20,4 +21,10 @@ public interface IItemDao {
     int updateItem(Item item);
 
     int addItem(Item item);
+
+    int deleteItem(String i_id);
+
+    List<ItemClass> queryItemClass();
+
+    int updateDetail(String i_id, String detail);
 }

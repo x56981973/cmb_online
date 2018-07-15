@@ -20,7 +20,6 @@
         SET
         description = #{description},
         price = #{price},
-        detail = #{detail},
         stock = #{stock},
         class_id = #{class_id}
         WHERE
@@ -32,4 +31,21 @@
       item(description, price, detail, stock, s_id, class_id)
       VALUES (#{description}, #{price}, #{detail}, #{stock}, #{s_id}, #{class_id})
     </insert>
+
+    <delete id="deleteLtem">
+        DELETE FROM item
+        WHERE i_id = #{0}
+    </delete>
+
+    <select id="queryItemClass" resultType="my.app.platform.domain.ItemClass">
+        SELECT * FROM itemClass
+    </select>
+
+    <update id="updateDetail">
+        UPDATE item
+        SET
+        detail = #{1}
+        WHERE
+        i_id = #{0}
+    </update>
 </mapper>

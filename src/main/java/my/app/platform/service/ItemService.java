@@ -1,10 +1,13 @@
 package my.app.platform.service;
 
 import my.app.platform.domain.Item;
+import my.app.platform.domain.ItemClass;
 import my.app.platform.domain.view.ItemDetail;
 import my.app.platform.repository.mapper.item.IItemDao;
+import my.app.platform.service.File.UploadFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,6 +20,9 @@ import java.util.List;
 public class ItemService {
     @Autowired
     IItemDao itemDao;
+
+    @Autowired
+    UploadFileService uploadFileService;
 
     public List<ItemDetail> queryAllItem(){
         return itemDao.queryAllItem();
@@ -70,10 +76,42 @@ public class ItemService {
     }
 
     /**
+     * 删除商品
+     * @param i_id 商品编号
+     * @return 删除结果
+     */
+    public int deleteItem(String i_id){
+        return itemDao.deleteItem(i_id);
+    }
+
+    /**
      * 获取总数
      * @return 总数
      */
     public int count(){
         return itemDao.queryAllItem().size();
+    }
+
+    /**
+     * 获取分类列表
+     * @return 分类
+     */
+    public List<ItemClass> queryItemClass(){
+        return itemDao.queryItemClass();
+    }
+
+    /**
+     * 更新图片地址
+     * @param pic 图片
+     * @param i_id 商品id
+     * @return 更新结果
+     */
+    public int updatePic(MultipartFile pic, String i_id, String username){
+        String path = uploadFileService.uploadPic(pic, username);
+        if("".equals(path)){
+            return 0;
+        } else {
+            return itemDao.updateDetail(i_id, path);
+        }
     }
 }

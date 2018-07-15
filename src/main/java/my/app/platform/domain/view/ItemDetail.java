@@ -24,6 +24,9 @@ public class ItemDetail {
     //所属卖家
     private String s_id;
 
+    //卖家用户名
+    private String s_username;
+
     //卖家名称
     private String s_name;
 
@@ -103,5 +106,13 @@ public class ItemDetail {
 
     public void setClass_name(String class_name) {
         this.class_name = class_name;
+    }
+
+    public String getS_username() {
+        return s_username;
+    }
+
+    public void setS_username(String s_username) {
+        this.s_username = s_username;
     }
 }

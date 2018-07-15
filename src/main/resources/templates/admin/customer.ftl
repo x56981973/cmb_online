@@ -342,32 +342,32 @@
                             <label class="control-label">用户名</label>
                             <input type="text" id="edit_username">
                         </div>
-                        <div class="clearfix" style="margin-bottom: 20px"> </div>
+                        <div class="clearfix" style="margin-bottom: 10px"> </div>
                         <div class="col-md-12 form-group1">
                             <label class="control-label">名称</label>
                             <input type="text" id="edit_name">
                         </div>
-                        <div class="clearfix" style="margin-bottom: 20px"> </div>
+                        <div class="clearfix" style="margin-bottom: 10px"> </div>
                         <div class="col-md-12 form-group1">
                             <label class="control-label">密码</label>
                             <input type="text" id="edit_password">
                         </div>
-                        <div class="clearfix" style="margin-bottom: 20px"> </div>
+                        <div class="clearfix" style="margin-bottom: 10px"> </div>
                         <div class="col-md-12 form-group1">
                             <label class="control-label">城市</label>
                             <input type="text" id="edit_city">
                         </div>
-                        <div class="clearfix" style="margin-bottom: 20px"> </div>
+                        <div class="clearfix" style="margin-bottom: 10px"> </div>
                         <div class="col-md-12 form-group1">
                             <label class="control-label">地址</label>
                             <input type="text" id="edit_address">
                         </div>
-                        <div class="clearfix" style="margin-bottom: 20px"> </div>
+                        <div class="clearfix" style="margin-bottom: 10px"> </div>
                         <div class="col-md-12 form-group1">
                             <label class="control-label">手机</label>
                             <input type="text" id="edit_mobile">
                         </div>
-                        <div class="clearfix" style="margin-bottom: 20px"> </div>
+                        <div class="clearfix" style="margin-bottom: 10px"> </div>
                         <div class="col-md-12 form-group2 group-mail">
                             <label class="control-label">状态</label>
                             <select id="selector_payment">

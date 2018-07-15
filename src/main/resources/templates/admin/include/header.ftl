@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="${base}/backend/css/icon-font.min.css" type='text/css' />
     <!-- //lined-icons -->
     <link rel="stylesheet" type="text/css" href="${base}/backend/css/sweetalert.css">
+    <link href="//cdn.bootcss.com/toastr.js/2.1.2/toastr.min.css" rel="stylesheet">
 </head>
 
 <body>

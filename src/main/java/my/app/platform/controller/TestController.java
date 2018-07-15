@@ -2,9 +2,6 @@ package my.app.platform.controller;
 
 import my.app.framework.web.Result;
 import my.app.framework.web.ResultHelper;
-import my.app.platform.domain.Customer;
-import my.app.platform.domain.OptionRecord;
-import my.app.platform.domain.Seller;
 import my.app.platform.repository.mapper.admin.IAdminDao;
 import my.app.platform.repository.mapper.seller.ISellerDao;
 import my.app.platform.repository.mapper.user.IUserDao;
@@ -13,9 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.swing.text.html.Option;
 
 /**
  * @author 夏之阳
@@ -51,8 +45,11 @@ public class TestController {
     @Autowired
     LogService logService;
 
+    @Autowired
+    AdminService adminService;
+
     @RequestMapping(value = "/test", method = RequestMethod.POST)
-    public Result testHandler(Seller seller) {
-        return ResultHelper.newSuccessResult(sellerService.updateSeller(seller));
+    public Result testHandler(String username, String name, String password) {
+        return ResultHelper.newSuccessResult(adminService.updateAccountPwd(username, name, password));
     }
 }
