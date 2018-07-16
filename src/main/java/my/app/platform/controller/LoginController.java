@@ -50,6 +50,14 @@ public class LoginController {
      */
     @RequestMapping(value = "/login")
     public String login(){
+        if(session.getAttribute("name") != null){
+            session.removeAttribute("name");
+        } else if(session.getAttribute("username") != null){
+            session.removeAttribute("username");
+        } else if(session.getAttribute("role") != null){
+            session.removeAttribute("role");
+        }
+
         return "/login";
     }
 

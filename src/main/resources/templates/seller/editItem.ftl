@@ -7,9 +7,9 @@
         <div class="mother-grid-inner">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="${base}/admin/home">控制面板</a>
+                    <a href="${base}/seller/home">控制面板</a>
                     <i class="fa fa-angle-right"></i>
-                    <a href="${base}/admin/item">商品</a>
+                    <a href="${base}/seller/item">商品</a>
                     <i class="fa fa-angle-right"></i>
                     编辑商品
                 </li>
@@ -58,7 +58,7 @@
                         <div class="panel-footer">
                             <div class="row">
                                 <div class="col-sm-8 col-sm-offset-2">
-                                    <button type="submit" class="btn btn-primary" id="postPic">保存修改</button>
+                                    <button type="submit" class="btn btn-primary" id="postPic">保存设置</button>
                                     <button type="reset" class="btn" id="cancel">取消</button>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
 
         var form = new FormData(document.getElementById("updateItem"));
         $.ajax({
-            url: '${base}/admin/item/updatePic',
+            url: '${base}/seller/item/updatePic',
             type: 'POST',
             data: form,
             cache: false,
@@ -92,7 +92,7 @@
                                 confirmButtonText: "确认"
                             },
                             function(){
-                                window.location.href = "${base}" + "/admin/item"
+                                window.location.href = "${base}" + "/seller/item"
                             });
                 } else {
                     swal(data.msg,"","error");
@@ -104,7 +104,7 @@
 
 <script type="text/javascript">
     $("#cancel").click(function(){
-        window.location.href = "${base}" + "/admin/item"
+        window.location.href = "${base}" + "/seller/item"
     });
 </script>
 

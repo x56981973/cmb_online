@@ -44,11 +44,11 @@ public class ItemService {
 
     /**
      * 根据卖家编号查询商品
-     * @param s_id 卖家编号
+     * @param username 卖家编号
      * @return 属于卖家的商品
      */
-    public List<ItemDetail> queryItemBySellerID(String s_id) {
-        List<ItemDetail> itemList = itemDao.queryItemBySId(s_id);
+    public List<ItemDetail> queryItemBySeller(String username) {
+        List<ItemDetail> itemList = itemDao.queryItemBySeller(username);
         if (itemList.size() != 0){
             return itemList;
         } else {
@@ -112,6 +112,15 @@ public class ItemService {
             return 0;
         } else {
             return itemDao.updateDetail(i_id, path);
+        }
+    }
+
+    public ItemDetail queryItemByName(String description, String s_username){
+        List<ItemDetail> itemList = itemDao.queryItemByName(description, s_username);
+        if (itemList.size() != 0){
+            return itemList.get(0);
+        } else {
+            return null;
         }
     }
 }

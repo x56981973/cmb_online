@@ -2,6 +2,7 @@ package my.app.platform.domain.model;
 
 import my.app.platform.domain.view.ItemDetail;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -60,6 +61,9 @@ public class MOrder {
 
     //电话
     private String c_mobile;
+
+    //商品摘要
+    private String brief;
 
     public String getO_id() {
         return o_id;
@@ -195,5 +199,13 @@ public class MOrder {
 
     public void setC_username(String c_username) {
         this.c_username = c_username;
+    }
+
+    public String getBrief() {
+        return brief;
+    }
+
+    public void setBrief(String brief) {
+        this.brief = brief;
     }
 }

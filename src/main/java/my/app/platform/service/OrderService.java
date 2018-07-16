@@ -108,6 +108,11 @@ public class OrderService {
                 mOrder.setNumList(numList);
             }
         }
+
+        for(MOrder mOrder : mOrderList){
+            mOrder.setBrief(serializeItemList(mOrder));
+        }
+
         return mOrderList;
     }
 
@@ -149,5 +154,25 @@ public class OrderService {
 
     public int count(){
         return orderDao.queryAllOrder().size();
+    }
+
+    public String serializeItemList(MOrder mOrder){
+        List<ItemDetail> itemList = mOrder.getItemList();
+        List<Integer> numList = mOrder.getNumList();
+
+        List<String> serialize = new ArrayList<>();
+        for (int i = 0; i < itemList.size(); i++){
+            ItemDetail itemDetail = itemList.get(i);
+            String i_id = itemDetail.getI_id();
+            String description = itemDetail.getDescription();
+            String price = itemDetail.getPrice();
+            String num = numList.get(i).toString();
+            String json = "{'i_id':'" + i_id + "'," +
+                            "'description':'" + description + "'," +
+                            "'price':'" + price + "'," +
+                            "'num':'" + num + "'}";
+            serialize.add(json);
+        }
+        return serialize.toString();
     }
 }

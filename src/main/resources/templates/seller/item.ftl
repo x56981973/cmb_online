@@ -7,7 +7,7 @@
         <div class="mother-grid-inner">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="${base}/admin/home">控制面板</a>
+                    <a href="${base}/seller/home">控制面板</a>
                     <i class="fa fa-angle-right"></i>
                     商品
                 </li>
@@ -21,7 +21,7 @@
                 <div class="agile-tables">
                     <h2> 商品列表 </h2>
                     <h2> ---------------------------------------------------
-                        <a href="${base}/admin/item/new" style="float: right; color: black; font-size: 20px"><i class="fa fa-plus"> 新增</i></a>
+                        <a style="float: right; color: black; font-size: 20px" href="${base}/seller/item/new"><i class="fa fa-plus"> 新增</i></a>
                     </h2>
                     <table id="table" class="display">
                         <thead>
@@ -57,7 +57,7 @@
                                     <a  href="#" data-toggle="modal" data-target="#editModal" data-id="${i.i_id}"
                                         data-description="${i.description}" data-price="${i.price}" data-stock="${i.stock}"
                                         data-sid="${i.s_id}" data-classid="${i.class_id}" data-classname="${i.class_name}"> 编辑 </a> |
-                                    <a  href="${base}/admin/item/edit/${i.i_id}" > 修改图片 </a> |
+                                    <a  href="${base}/seller/item/edit/${i.i_id}" > 修改图片 </a> |
                                     <a  href="#" data-toggle="modal" data-target="#deleteModal"
                                         data-id="${i.i_id}" data-description="${i.description}"> 删除 </a>
                                 </td>
@@ -103,7 +103,7 @@
 
     $("#checkDelete").click(function(){
         $.ajax({
-            url: '${base}/admin/item/delete',
+            url: '${base}/seller/item/delete',
             type: 'POST',
             data: $.param({'i_id':id}),
             success: function (result) {
@@ -207,7 +207,7 @@
         var class_id = $('#class_name option:selected').val();
 
         $.ajax({
-            url: '${base}/admin/item/update',
+            url: '${base}/seller/item/update',
             type: 'POST',
             data: $.param({'i_id':i_id,'description':description,'price':price,
                 'stock':stock,'class_id':class_id}),

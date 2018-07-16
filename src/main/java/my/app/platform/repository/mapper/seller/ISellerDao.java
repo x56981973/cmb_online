@@ -19,4 +19,8 @@ public interface ISellerDao {
     int updateSeller(Seller seller);
 
     int deleteSeller(String username);
+
+    int updateSellerPwd(String username, String name, String password);
+
+    int updateSellerName(String username, String name);
 }

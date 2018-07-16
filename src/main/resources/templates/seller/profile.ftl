@@ -7,7 +7,7 @@
         <div class="mother-grid-inner">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="${base}/admin/home">控制面板</a>
+                    <a href="${base}/seller/home">控制面板</a>
                     <i class="fa fa-angle-right"></i>
                     账号设置
                 </li>
@@ -24,12 +24,12 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label hor-form">用户名</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="username" readOnly="true" value="${admin.username}">
+                                <input type="text" class="form-control" id="username" readOnly="true" value="${seller.username}">
                             </div>
                             <div class="clearfix" style="margin-bottom: 20px"> </div>
                             <label class="col-sm-2 control-label hor-form">名称</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="name" value="${admin.name}">
+                                <input type="text" class="form-control" id="name" value="${seller.name}">
                             </div>
                             <div class="clearfix" style="margin-bottom: 20px"> </div>
                             <label class="col-sm-2 control-label hor-form">修改密码</label>
@@ -63,7 +63,7 @@
     function update()
     {
         //全部无修改
-        if($('#password2').val() == "" && $('#password1').val() == "" && $('#name').val() == "${admin.name}"){
+        if($('#password2').val() == "" && $('#password1').val() == "" && $('#name').val() == "${seller.name}"){
             return false;
         }
         //两次密码不一致
@@ -72,12 +72,12 @@
             return false;
         }
 
-        if($('#password2').val() == "" && $('#password1').val() == "" && $('#name').val() != "${admin.name}"){
+        if($('#password2').val() == "" && $('#password1').val() == "" && $('#name').val() != "${seller.name}"){
             $.ajax({
-                url: '${base}/admin/account/update/name',
+                url: '${base}/seller/account/update/name',
                 type: 'POST',
                 data: $.param({
-                    'username': "${admin.username}",
+                    'username': "${seller.username}",
                     'name': $('#name').val()
                 }),
                 success: function (result) {
@@ -99,11 +99,11 @@
             });
         } else {
             $.ajax({
-                url: '${base}/admin/account/update/pwd',
+                url: '${base}/seller/account/update/pwd',
                 type: 'POST',
                 data: $.param({
-                    'username': "${admin.username}",
-                    'name': "${admin.name}",
+                    'username': "${seller.username}",
+                    'name': "${seller.name}",
                     'password': $('#password1').val()
                 }),
                 success: function (result) {

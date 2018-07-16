@@ -30,6 +30,7 @@
                             <th>商家</th>
                             <th>商品数量</th>
                             <th>订单总额</th>
+                            <th>支付方式</th>
                             <th>订单状态</th>
                         </tr>
                         </thead>
@@ -43,6 +44,15 @@
                                 <td>${o.s_name}</td>
                                 <td>${o.itemList?size}</td>
                                 <td>${o.total_price}</td>
+                                <td>
+                                    <#if o.payment == "alipay">
+                                        支付宝
+                                    <#elseif o.payment == "wechatpay">
+                                        微信
+                                    <#else>
+                                        银联
+                                    </#if>
+                                </td>
                                 <td>
                                     <#if o.status == "1">
                                         已成交

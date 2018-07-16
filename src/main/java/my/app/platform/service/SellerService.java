@@ -51,4 +51,12 @@ public class SellerService {
     public int count(){
         return sellerDao.queryAllSeller().size();
     }
+
+    public int updateAccountPwd(String username, String name, String password){
+        return sellerDao.updateSellerPwd(username, name, password);
+    }
+
+    public int updateAccountName(String username, String name){
+        return sellerDao.updateSellerName(username, name);
+    }
 }

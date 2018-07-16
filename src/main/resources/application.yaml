@@ -14,4 +14,4 @@ session:
 
 upload:
   file:
-    path: /Users/xiazhiyang/Documents/java project/cmb_online/src/main/resources/static/
+    path: /Users/xiazhiyang/Documents/java_project/cmb_online/target/classes/static/

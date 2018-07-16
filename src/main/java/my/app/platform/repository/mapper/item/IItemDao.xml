@@ -10,9 +10,9 @@
         WHERE i_id = #{i_id}
     </select>
 
-    <select id="queryItemBySId" parameterType="String" resultType="my.app.platform.domain.view.ItemDetail">
+    <select id="queryItemBySeller" parameterType="String" resultType="my.app.platform.domain.view.ItemDetail">
         SELECT * FROM item_detail
-        WHERE s_id = #{s_id}
+        WHERE s_username = #{s_username}
     </select>
 
     <update id="updateItem" parameterType="my.app.platform.domain.Item">
@@ -28,11 +28,11 @@
 
     <insert id="addItem" parameterType="my.app.platform.domain.Item">
       INSERT INTO
-      item(description, price, detail, stock, s_id, class_id)
-      VALUES (#{description}, #{price}, #{detail}, #{stock}, #{s_id}, #{class_id})
+      item(description, price, stock, s_id, class_id)
+      VALUES (#{description}, #{price}, #{stock}, #{s_id}, #{class_id})
     </insert>
 
-    <delete id="deleteLtem">
+    <delete id="deleteItem">
         DELETE FROM item
         WHERE i_id = #{0}
     </delete>
@@ -48,4 +48,9 @@
         WHERE
         i_id = #{0}
     </update>
+
+    <select id="queryItemByName" parameterType="String" resultType="my.app.platform.domain.view.ItemDetail">
+        SELECT * FROM item_detail
+        WHERE description = #{0} AND s_username = #{1}
+    </select>
 </mapper>

@@ -1,7 +1,7 @@
-package my.app.platform.controller.admin;
+package my.app.platform.controller.seller;
 
-import my.app.platform.domain.Admin;
-import my.app.platform.service.AdminService;
+import my.app.platform.domain.Seller;
+import my.app.platform.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,36 +13,36 @@ import javax.servlet.http.HttpSession;
 
 /**
  * @author 夏之阳
- *         创建时间：2018-07-14 21:08
- *         创建说明：
+ *         创建时间：2018-07-16 01:27
+ *         创建说明：商家账号
  */
 
 @Controller
-@RequestMapping(value = "/admin")
-public class AdminAccountController {
+@RequestMapping(value = "/seller")
+public class SellerAccountController {
     @Autowired
     HttpSession session;
 
     @Autowired
-    AdminService adminService;
+    SellerService sellerService;
 
     @RequestMapping(value = "/profile")
-    public String adminProfile(Model model){
+    public String sellerProfile(Model model){
         String name = session.getAttribute("name").toString();
         String username = session.getAttribute("username").toString();
         model.addAttribute("username", username);
         model.addAttribute("name", name);
 
-        Admin admin = adminService.queryAdminByUsername(username);
-        model.addAttribute("admin", admin);
+        Seller seller = sellerService.querySellerByUsername(username);
+        model.addAttribute("seller", seller);
 
-        return "/admin/profile";
+        return "/seller/profile";
     }
 
     @RequestMapping(value = "/account/update/pwd", method = RequestMethod.POST)
     @ResponseBody
-    public String adminAccountUpdatePwd(String username, String name, String password){
-        if(adminService.updateAccountPwd(username, name, password) == 1){
+    public String sellerAccountUpdatePwd(String username, String name, String password){
+        if(sellerService.updateAccountPwd(username, name, password) == 1){
             return "{\"error\":\"0\",\"msg\":\"修改成功,请重新登陆\"}";
         }else{
             return "{\"error\":\"1\",\"msg\":\"删除失败\"}";
@@ -51,8 +51,8 @@ public class AdminAccountController {
 
     @RequestMapping(value = "/account/update/name", method = RequestMethod.POST)
     @ResponseBody
-    public String adminAccountUpdateName(String username, String name){
-        if(adminService.updateAccountName(username, name) == 1){
+    public String sellerAccountUpdateName(String username, String name){
+        if(sellerService.updateAccountName(username, name) == 1){
             return "{\"error\":\"0\",\"msg\":\"修改成功,请重新登陆\"}";
         }else{
             return "{\"error\":\"1\",\"msg\":\"删除失败\"}";

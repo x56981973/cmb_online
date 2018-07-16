@@ -31,4 +31,21 @@
         DELETE FROM seller
         WHERE username = #{0}
     </delete>
+
+    <update id="updateSellerPwd" parameterType="String">
+        UPDATE seller
+        SET
+        name = #{1},
+        password = #{2}
+        WHERE
+        username = #{0}
+    </update>
+
+    <update id="updateSellerName" parameterType="String">
+        UPDATE seller
+        SET
+        name = #{1}
+        WHERE
+        username = #{0}
+    </update>
 </mapper>

@@ -50,7 +50,7 @@ public class TestController {
     AdminService adminService;
 
     @RequestMapping(value = "/test", method = RequestMethod.POST)
-    public Result testHandler(MultipartFile pic, String i_id, String username) {
-        return ResultHelper.newSuccessResult(itemService.updatePic(pic, i_id, username));
+    public Result testHandler() {
+        return ResultHelper.newSuccessResult(orderService.queryOrderBySeller("uniqlo"));
     }
 }

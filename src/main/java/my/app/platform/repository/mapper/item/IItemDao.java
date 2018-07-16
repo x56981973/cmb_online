@@ -16,7 +16,7 @@ public interface IItemDao {
 
     List<ItemDetail> queryItemByIId(String i_id);
 
-    List<ItemDetail> queryItemBySId(String s_id);
+    List<ItemDetail> queryItemBySeller(String username);
 
     int updateItem(Item item);
 
@@ -27,4 +27,6 @@ public interface IItemDao {
     List<ItemClass> queryItemClass();
 
     int updateDetail(String i_id, String detail);
+
+    List<ItemDetail> queryItemByName(String description, String s_username);
 }

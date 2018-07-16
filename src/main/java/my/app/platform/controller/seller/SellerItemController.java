@@ -1,12 +1,10 @@
-package my.app.platform.controller.admin;
+package my.app.platform.controller.seller;
 
 import my.app.platform.domain.Item;
 import my.app.platform.domain.ItemClass;
-import my.app.platform.domain.OptionRecord;
 import my.app.platform.domain.Seller;
 import my.app.platform.domain.view.ItemDetail;
 import my.app.platform.service.ItemService;
-import my.app.platform.service.LogService;
 import my.app.platform.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,13 +20,13 @@ import java.util.List;
 
 /**
  * @author 夏之阳
- *         创建时间：2018-07-13 17:21
+ *         创建时间：2018-07-16 01:38
  *         创建说明：
  */
 
 @Controller
-@RequestMapping(value = "/admin")
-public class AdminItemController {
+@RequestMapping(value = "/seller")
+public class SellerItemController {
     @Autowired
     HttpSession session;
 
@@ -38,27 +36,24 @@ public class AdminItemController {
     @Autowired
     SellerService sellerService;
 
-    @Autowired
-    LogService logService;
-
     @RequestMapping(value = "/item")
-    public String adminItem(Model model){
-        List<ItemDetail> itemDetailList = itemService.queryAllItem();
-        model.addAttribute("items", itemDetailList);
-
-        List<ItemClass> itemClassList = itemService.queryItemClass();
-        model.addAttribute("itemClass", itemClassList);
-
+    public String sellerItem(Model model){
         String name = session.getAttribute("name").toString();
         String username = session.getAttribute("username").toString();
         model.addAttribute("username", username);
         model.addAttribute("name", name);
 
-        return "/admin/item";
+        List<ItemDetail> itemDetailList = itemService.queryItemBySeller(username);
+        model.addAttribute("items", itemDetailList);
+
+        List<ItemClass> itemClassList = itemService.queryItemClass();
+        model.addAttribute("itemClass", itemClassList);
+
+        return "/seller/item";
     }
 
     @RequestMapping(value = "/item/edit/{i_id}")
-    public String adminEditItem(@PathVariable String i_id, Model model){
+    public String sellerEditItem(@PathVariable String i_id, Model model){
         ItemDetail itemDetail = itemService.queryItemByItemID(i_id);
         model.addAttribute("i", itemDetail);
 
@@ -67,11 +62,11 @@ public class AdminItemController {
         model.addAttribute("username", username);
         model.addAttribute("name", name);
 
-        return "/admin/editItem";
+        return "/seller/editItem";
     }
 
     @RequestMapping(value = "/item/new")
-    public String adminNewItem(Model model){
+    public String sellerNewItem(Model model){
         List<ItemClass> itemClassList = itemService.queryItemClass();
         model.addAttribute("itemClass", itemClassList);
 
@@ -80,12 +75,12 @@ public class AdminItemController {
         model.addAttribute("username", username);
         model.addAttribute("name", name);
 
-        return "/admin/addItem";
+        return "/seller/addItem";
     }
 
     @RequestMapping(value = "/item/add", method = RequestMethod.POST)
     @ResponseBody
-    public String adminAddItem(MultipartFile pic, Item item, String username){
+    public String sellerAddItem(MultipartFile pic, Item item, String username){
         Seller seller = sellerService.querySellerByUsername(username);
         if(seller == null){
             return "{\"error\":\"1\",\"msg\":\"无此用户\"}";
@@ -99,9 +94,6 @@ public class AdminItemController {
             String i_id = itemDetail.getI_id();
             itemService.updatePic(pic, i_id, username);
 
-            String record = "新增商品：" + item.getDescription();
-//            setOptionRecord(record);
-
             return "{\"error\":\"0\",\"msg\":\"新增成功\"}";
         }else{
             return "{\"error\":\"1\",\"msg\":\"新增失败\"}";
@@ -110,11 +102,8 @@ public class AdminItemController {
 
     @RequestMapping(value = "/item/delete", method = RequestMethod.POST)
     @ResponseBody
-    public String adminDelItem(String i_id){
+    public String sellerDelItem(String i_id){
         if(itemService.deleteItem(i_id) == 1){
-            String record = "删除商品编号：" + i_id;
-//            setOptionRecord(record);
-
             return "{\"error\":\"0\",\"msg\":\"删除成功\"}";
         }else{
             return "{\"error\":\"1\",\"msg\":\"删除失败\"}";
@@ -123,11 +112,8 @@ public class AdminItemController {
 
     @RequestMapping(value = "/item/update", method = RequestMethod.POST)
     @ResponseBody
-    public String adminUpdateItem(Item item){
+    public String sellerUpdateItem(Item item){
         if(itemService.updateItem(item) == 1){
-            String record = "修改商品编号：" + item.getI_id();
-//            setOptionRecord(record);
-
             return "{\"error\":\"0\",\"msg\":\"修改成功\"}";
         }else{
             return "{\"error\":\"1\",\"msg\":\"修改失败\"}";
@@ -136,24 +122,11 @@ public class AdminItemController {
 
     @RequestMapping(value = "/item/updatePic", method = RequestMethod.POST)
     @ResponseBody
-    public String adminUpdateItem(MultipartFile pic, String i_id, String username){
+    public String sellerUpdateItem(MultipartFile pic, String i_id, String username){
         if(itemService.updatePic(pic, i_id, username) == 1){
-            String record = "修改商品图片,编号：" + i_id;
-//            setOptionRecord(record);
-
             return "{\"error\":\"0\",\"msg\":\"修改成功\"}";
         }else{
             return "{\"error\":\"1\",\"msg\":\"修改失败\"}";
         }
-    }
-
-    private int setOptionRecord(String record){
-        OptionRecord optionRecord = new OptionRecord();
-
-        optionRecord.setUsername(session.getAttribute("username").toString());
-        optionRecord.setOption_class("item");
-        optionRecord.setOption_detail(record);
-
-        return logService.insertOptionRecord(optionRecord);
     }
 }
