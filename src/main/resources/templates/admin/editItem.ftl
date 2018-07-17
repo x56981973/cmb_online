@@ -73,32 +73,37 @@
 
 <script type="text/javascript">
     $("#postPic").click(function(){
+        var pic = $('#pic').val();
+        if(pic == ""){
+            swal("请上传图片","","error");
+        } else {
 
-        var form = new FormData(document.getElementById("updateItem"));
-        $.ajax({
-            url: '${base}/admin/item/updatePic',
-            type: 'POST',
-            data: form,
-            cache: false,
-            processData: false,
-            contentType: false,
-            success: function (result) {
-                var data = eval("(" + result + ")");
-                if (data.error == 0) {
-                    swal({
-                                title: data.msg,
-                                text: "",
-                                type: "success",
-                                confirmButtonText: "确认"
-                            },
-                            function(){
-                                window.location.href = "${base}" + "/admin/item"
-                            });
-                } else {
-                    swal(data.msg,"","error");
+            var form = new FormData(document.getElementById("updateItem"));
+            $.ajax({
+                url: '${base}/admin/item/updatePic',
+                type: 'POST',
+                data: form,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    var data = eval("(" + result + ")");
+                    if (data.error == 0) {
+                        swal({
+                                    title: data.msg,
+                                    text: "",
+                                    type: "success",
+                                    confirmButtonText: "确认"
+                                },
+                                function () {
+                                    window.location.href = "${base}" + "/admin/item"
+                                });
+                    } else {
+                        swal(data.msg, "", "error");
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 </script>
 

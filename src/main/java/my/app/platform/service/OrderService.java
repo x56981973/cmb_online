@@ -60,6 +60,29 @@ public class OrderService {
         }
     }
 
+    public List<MOrder> queryDoneOrderBySeller(String username){
+        List<MOrder> mOrderList = new ArrayList<>();
+
+        List<OrderDetail> orderDetailList = orderDao.queryDoneOrderBySID(username);
+        if (orderDetailList.size() == 0){
+            return mOrderList;
+        } else {
+            return makeList(orderDetailList);
+        }
+    }
+
+    public List<MOrder> queryNotDoneOrderBySeller(String username){
+        List<MOrder> mOrderList = new ArrayList<>();
+
+        List<OrderDetail> orderDetailList = orderDao.queryNotDoneOrderBySID(username);
+        if (orderDetailList.size() == 0){
+            return mOrderList;
+        } else {
+            return makeList(orderDetailList);
+        }
+    }
+
+
     private List<MOrder> makeList(List<OrderDetail> orderDetailList){
         List<MOrder> mOrderList = new ArrayList<>();
 
@@ -148,12 +171,24 @@ public class OrderService {
         return 1;
     }
 
-    public int updateOrder(Order order){
-        return orderDao.updateOrder(order);
+    public int confirmDeliver(String o_id){
+        return orderDao.confirmDeliver(o_id);
+    }
+
+    public int confirmReceive(String o_id){
+        return orderDao.confirmReceive(o_id);
     }
 
     public int count(){
         return orderDao.queryAllOrder().size();
+    }
+
+    public int countByUsername(String username){
+        return queryOrderBySeller(username).size();
+    }
+
+    public int countNDByUsername(String username){
+        return queryNotDoneOrderBySeller(username).size();
     }
 
     public String serializeItemList(MOrder mOrder){

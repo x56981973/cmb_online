@@ -91,6 +91,7 @@
         var price = $('#price').val();
         var stock = $('#stock').val();
         var class_id = $('#class_name option:selected').val();
+        var pic = $('#pic').val();
 
         if(description == ''){
             swal("商品名不能为空","","error");
@@ -102,6 +103,8 @@
             swal("库存不能为空","","error");
         } else if(class_id == "-1"){
             swal("请选择商品类型","","error");
+        } else if(pic == ""){
+            swal("请上传图片","","error");
         } else {
 
             var form = new FormData(document.getElementById("addItem"));

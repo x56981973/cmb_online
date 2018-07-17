@@ -17,6 +17,66 @@
                 </li>
             </ol>
 
+            <div class="four-grids">
+                <div class="col-md-3 four-grid">
+                    <a href="${base}/seller/order">
+                        <div class="four-agileinfo">
+                            <div class="icon">
+                                <i class="glyphicon glyphicon-gift" aria-hidden="true"></i>
+                            </div>
+                            <div class="four-text">
+                                <h3>订单总数</h3>
+                                <h4> ${order_num}  </h4>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 four-grid">
+                    <a href="${base}/seller/not_done_order">
+                        <div class="four-agileits">
+                            <div class="icon">
+                                <i class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></i>
+                            </div>
+                            <div class="four-text">
+                                <h3>未发货订单</h3>
+                                <h4> ${not_done_order_num} </h4>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 four-grid">
+                    <a href="${base}/seller/item">
+                        <div class="four-w3ls">
+                            <div class="icon">
+                                <i class="glyphicon glyphicon-gift" aria-hidden="true"></i>
+                            </div>
+                            <div class="four-text">
+                                <h3>商品总数</h3>
+                                <h4> ${item_num} </h4>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 four-grid">
+                    <a href="#">
+                        <div class="four-wthree">
+                            <div class="icon">
+                                <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+                            </div>
+                            <div class="four-text">
+                                <h3>平均流量</h3>
+                                <h4> 10000 </h4>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
             <!--agileinfo-grap-->
             <div class="agileinfo-grap">
                 <div class="agileits-box">

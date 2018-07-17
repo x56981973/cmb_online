@@ -18,9 +18,15 @@ public interface IOrderDao {
 
     List<OrderDetail> queryOrderBySID(String username);
 
+    List<OrderDetail> queryDoneOrderBySID(String username);
+
+    List<OrderDetail> queryNotDoneOrderBySID(String username);
+
     int insertOrder(Order order);
 
     int insertOrderItem(Order_Item order_item);
 
-    int updateOrder(Order order);
+    int confirmDeliver(String o_id);
+
+    int confirmReceive(String o_id);
 }

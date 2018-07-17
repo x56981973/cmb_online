@@ -26,12 +26,12 @@
                         <tr>
                             <th>订单编号</th>
                             <th>订单日期</th>
-                            <th>顾客</th>
-                            <th>商家</th>
-                            <th>商品数量</th>
+                            <th>顾客姓名</th>
+                            <th>商家名称</th>
+                        <#--<th>商品数量</th>-->
                             <th>订单总额</th>
-                            <th>支付方式</th>
                             <th>订单状态</th>
+                            <th>订单详情</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -42,17 +42,8 @@
                                 <td>${o.date}</td>
                                 <td>${o.c_name}</td>
                                 <td>${o.s_name}</td>
-                                <td>${o.itemList?size}</td>
+                            <#--<td>${o.itemList?size}</td>-->
                                 <td>${o.total_price}</td>
-                                <td>
-                                    <#if o.payment == "alipay">
-                                        支付宝
-                                    <#elseif o.payment == "wechatpay">
-                                        微信
-                                    <#else>
-                                        银联
-                                    </#if>
-                                </td>
                                 <td>
                                     <#if o.status == "1">
                                         已成交
@@ -61,6 +52,12 @@
                                     <#else>
                                         待收货
                                     </#if>
+                                </td>
+                                <td>
+                                    <a  href="#" data-toggle="modal" data-target="#detailModal"
+                                        data-brief="${o.brief}" data-id="${o.o_id}" data-date="${o.date}" data-payment="${o.payment}"
+                                        data-cname="${o.c_name}" data-price="${o.total_price}" data-city="${o.c_city}" data-status="${o.status}"
+                                        data-address="${o.c_address}" data-mobile="${o.c_mobile}"> 详情 </a>
                                 </td>
                             </tr>
                             </#list>
@@ -73,13 +70,172 @@
     </div>
 </div>
 
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4>详情</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label hor-form">订单编号</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="o_id" readOnly="true">
+                        </div>
+                        <div class="clearfix" style="margin-bottom: 20px"> </div>
+                        <label class="col-sm-2 control-label hor-form">订单日期</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="date" readOnly="true">
+                        </div>
+                        <div class="clearfix" style="margin-bottom: 20px"> </div>
+                        <label class="col-sm-2 control-label hor-form">订单总额</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="total_price" readOnly="true">
+                        </div>
+                        <div class="clearfix" style="margin-bottom: 20px"> </div>
+                        <label class="col-sm-2 control-label hor-form">支付方式</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="payment" readOnly="true">
+                        </div>
+                        <div class="clearfix" style="margin-bottom: 20px"> </div>
+                        <label class="col-sm-2 control-label hor-form">顾客姓名</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="c_name" readOnly="true">
+                        </div>
+                        <div class="clearfix" style="margin-bottom: 20px"> </div>
+                        <label class="col-sm-2 control-label hor-form">城市</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="city" readOnly="true">
+                        </div>
+                        <div class="clearfix" style="margin-bottom: 20px"> </div>
+                        <label class="col-sm-2 control-label hor-form">地址</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="address" readOnly="true">
+                        </div>
+                        <div class="clearfix" style="margin-bottom: 20px"> </div>
+                        <label class="col-sm-2 control-label hor-form">手机</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="mobile" readOnly="true">
+                        </div>
+                        <div class="clearfix" style="margin-bottom: 20px"> </div>
+                        <label class="col-sm-2 control-label hor-form">状态</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="status" readOnly="true">
+                        </div>
+                        <div class="clearfix" style="margin-bottom: 20px"> </div>
+
+                        <label class="col-sm-2 control-label hor-form">商品列表</label>
+                        <div class="agile-tables">
+                            <table id="item_list" class="display">
+                                <tr>
+                                    <th>编号</th>
+                                    <th>名称</th>
+                                    <th>单价</th>
+                                    <th>数量</th>
+                                </tr>
+                            </table>
+                        <#--<input type="text" class="form-control" id="payment" readOnly="true">-->
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary" data-dismiss="modal">确认</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $("#detailModal").on("show.bs.modal", function (event) {
+        var button = $(event.relatedTarget);
+        var brief = button.data("brief");
+        var o_id = button.data("id");
+        var date = button.data("date");
+        var c_name = button.data("cname");
+        var s_name = button.data("sname");
+        var total_price = button.data("price");
+        var city = button.data("city");
+        var address = button.data("address");
+        var mobile = button.data("mobile");
+        var payment = button.data("payment");
+        var status = button.data("status");
+
+        var modal = $(this);
+        modal.find('#o_id').val(o_id);
+        modal.find('#date').val(date);
+        modal.find('#total_price').val(total_price);
+        modal.find('#c_name').val(c_name);
+        modal.find('#city').val(city);
+        modal.find('#address').val(address);
+        modal.find('#mobile').val(mobile);
+        if(status == "1"){
+            modal.find('#status').val("已成交");
+        } else if(status == "2"){
+            modal.find('#status').val("待发货");
+        } else {
+            modal.find('#status').val("待收货");
+        }
+
+        if(payment == "alipay"){
+            modal.find('#payment').val("支付宝");
+        } else if(payment == "wechatpay"){
+            modal.find('#payment').val("微信");
+        } else{
+            modal.find('#payment').val("银联");
+        }
+
+        var data = eval("(" + brief + ")");
+        $.each(data, function(index,item){
+            var i_id = item.i_id;
+            var description = item.description;
+            var per_price = item.price;
+            var num = item.num;
+            var i = "<tr class='new_items'>" +
+                    "   <td> " + i_id + "</td>" +
+                    "   <td> " + description + "</td>" +
+                    "   <td> " + per_price + "</td>" +
+                    "   <td> " + num + "</td>" +
+                    "</tr>";
+
+            $('#item_list').append(i);
+        });
+    });
+
+    //    $("#detailModal").on("shown.bs.modal", function (event) {
+    //        $('#item_list').DataTable();
+    //    });
+
+    $("#detailModal").on("hidden.bs.modal", function (event) {
+        $("tr").remove(".new_items");
+    });
+
+</script>
+
 <link rel="stylesheet" type="text/css" href="${base}/backend/DataTables/datatables.min.css"/>
 <script type="text/javascript" src="${base}/backend/DataTables/datatables.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#table').DataTable({
-//            "ordering": false
+//            "ordering": false,
+            "language": {
+                "lengthMenu": "每页显示 _MENU_ 条结果",
+                "zeroRecords": "没有匹配结果",
+                "info": "当前显示第  _PAGE_ 页  共 _PAGES_ 页",
+                "infoEmpty": "没有匹配结果",
+                "infoFiltered": "(由 _MAX_ 项结果过滤)",
+                "search": "搜索:",
+                "paginate": {
+                    "previous": "上页",
+                    "next": "下页"
+                }
+            }
         });
+        $('#item_list').DataTable();
     } );
 </script>
 <#include "include/footer.ftl">

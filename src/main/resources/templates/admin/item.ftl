@@ -236,7 +236,19 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#table').DataTable({
-//            "ordering": false
+//            "ordering": false,
+            "language": {
+                "lengthMenu": "每页显示 _MENU_ 条结果",
+                "zeroRecords": "没有匹配结果",
+                "info": "当前显示第  _PAGE_ 页  共 _PAGES_ 页",
+                "infoEmpty": "没有匹配结果",
+                "infoFiltered": "(由 _MAX_ 项结果过滤)",
+                "search": "搜索:",
+                "paginate": {
+                    "previous": "上页",
+                    "next": "下页"
+                }
+            }
         });
     } );
 </script>

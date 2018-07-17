@@ -24,19 +24,44 @@
                 <a href="${base}/seller/order">
                     <i class="fa fa-file-text"></i>
                     <span>订单</span>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li id="menu-academico" >
-                <a href="#">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <span> ${name}</span>
                     <span class="fa fa-angle-right" style="float: right"></span>
                     <div class="clearfix"></div>
                 </a>
                 <ul id="menu-academico-sub" >
-                    <li id="menu-academico-avaliacoes" ><a href="${base}/seller/profile"><i class="fa fa-gear"></i> &nbsp;&nbsp;&nbsp;&nbsp;我的账号&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-                    <li id="menu-academico-avaliacoes" ><a href="${base}/logout"><i class="fa fa-power-off"></i> &nbsp;&nbsp;&nbsp;&nbsp;登出&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                    <li id="menu-academico-avaliacoes" >
+                        <a href="${base}/seller/order">
+                            <i class="fa fa-files-o"></i> &nbsp;&nbsp;&nbsp;&nbsp;全部订单&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                    </li>
+                    <li id="menu-academico-avaliacoes" >
+                        <a href="${base}/seller/done_order">
+                            <i class="fa fa-check-circle"></i> &nbsp;&nbsp;&nbsp;&nbsp;已发货订单&nbsp;&nbsp;&nbsp;&nbsp;
+                        </a>
+                    </li>
+                    <li id="menu-academico-avaliacoes" >
+                        <a href="${base}/seller/not_done_order">
+                            <i class="fa fa-exclamation-circle"></i> &nbsp;&nbsp;&nbsp;&nbsp;待发货订单&nbsp;&nbsp;&nbsp;&nbsp;
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li id="menu-academico" >
+                <a href="#">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <span>${name}</span>
+                    <span class="fa fa-angle-right" style="float: right"></span>
+                    <div class="clearfix"></div>
+                </a>
+                <ul id="menu-academico-sub" >
+                    <li id="menu-academico-avaliacoes" >
+                        <a href="${base}/seller/profile">
+                            <i class="fa fa-gear"></i> &nbsp;&nbsp;&nbsp;&nbsp;账号设置&nbsp;&nbsp;&nbsp;&nbsp;
+                        </a>
+                    </li>
+                    <li id="menu-academico-avaliacoes" >
+                        <a href="${base}/logout">
+                            <i class="fa fa-power-off"></i> &nbsp;&nbsp;&nbsp;&nbsp;登出&nbsp;&nbsp;&nbsp;&nbsp;
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>

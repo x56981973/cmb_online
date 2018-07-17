@@ -56,8 +56,16 @@
                     <div class="clearfix"></div>
                 </a>
                 <ul id="menu-academico-sub" >
-                    <li id="menu-academico-avaliacoes" ><a href="${base}/admin/profile"><i class="fa fa-gear"></i> &nbsp;&nbsp;&nbsp;&nbsp;我的账号&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-                    <li id="menu-academico-avaliacoes" ><a href="${base}/logout"><i class="fa fa-power-off"></i> &nbsp;&nbsp;&nbsp;&nbsp;登出&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                    <li id="menu-academico-avaliacoes" >
+                        <a href="${base}/admin/profile">
+                            <i class="fa fa-gear"></i> &nbsp;&nbsp;&nbsp;&nbsp;账号设置&nbsp;&nbsp;&nbsp;&nbsp;
+                        </a>
+                    </li>
+                    <li id="menu-academico-avaliacoes" >
+                        <a href="${base}/logout">
+                            <i class="fa fa-power-off"></i> &nbsp;&nbsp;&nbsp;&nbsp;登出&nbsp;&nbsp;&nbsp;&nbsp;
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>

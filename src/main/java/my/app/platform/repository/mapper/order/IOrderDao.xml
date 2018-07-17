@@ -18,22 +18,41 @@
         ORDER BY date DESC, o_id DESC
     </select>
 
+    <select id="queryDoneOrderBySID" parameterType="String" resultType="my.app.platform.domain.view.OrderDetail">
+        SELECT * FROM order_detail
+        WHERE s_username = #{username} AND status = 1
+        ORDER BY date DESC, o_id DESC
+    </select>
+
+    <select id="queryNotDoneOrderBySID" parameterType="String" resultType="my.app.platform.domain.view.OrderDetail">
+        SELECT * FROM order_detail
+        WHERE s_username = #{username} AND status = 2
+        ORDER BY date ASC, o_id ASC
+    </select>
+
     <insert id="insertOrder" parameterType="my.app.platform.domain.Order">
         INSERT INTO
-        order (o_id, date, price, c_id, s_id, payment, status, city, address, postcode, mobile)
+        orders (o_id, date, price, c_id, s_id, payment, status, city, address, postcode, mobile)
         VALUES (#{o_id}, #{date}, #{price}, #{c_id}, #{s_id}, #{payment}, #{status}, #{city}, #{address}, #{postcode}, #{mobile})
     </insert>
 
-    <update id="updateOrder" parameterType="my.app.platform.domain.Order">
-        UPDATE order
+    <update id="confirmDeliver">
+        UPDATE orders
         SET
-        status = #{status}
-        WHERE o_id = #{o_id}
+        status = 3
+        WHERE o_id = #{0}
+    </update>
+
+    <update id="confirmReceive">
+        UPDATE orders
+        SET
+        status = 1
+        WHERE o_id = #{0}
     </update>
 
     <insert id="insertOrderItem" parameterType="my.app.platform.domain.Order_Item">
         INSERT INTO
-        order (o_id, i_id, num, per_price)
+        orders (o_id, i_id, num, per_price)
         VALUES (#{o_id}, #{i_id}, #{num}, #{per_price})
     </insert>
 </mapper>

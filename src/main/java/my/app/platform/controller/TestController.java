@@ -51,6 +51,6 @@ public class TestController {
 
     @RequestMapping(value = "/test", method = RequestMethod.POST)
     public Result testHandler() {
-        return ResultHelper.newSuccessResult(orderService.queryOrderBySeller("uniqlo"));
+        return ResultHelper.newSuccessResult(orderService.confirmDeliver("3"));
     }
 }
