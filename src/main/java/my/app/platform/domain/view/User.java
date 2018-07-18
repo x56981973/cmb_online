@@ -18,6 +18,9 @@ public class User {
     //角色
     private String role;
 
+    //状态
+    private String status;
+
     public String getUsername() {
         return username;
     }
@@ -48,5 +51,13 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

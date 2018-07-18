@@ -4,39 +4,22 @@
     <select id="queryCart" resultType="my.app.platform.domain.view.CartDetail">
         SELECT * FROM cart_detail
         WHERE username = #{username}
+        ORDER BY s_id
     </select>
-
-    <insert id="insertCart">
-        INSERT INTO
-        cart(username)
-        VALUES (#{0})
-    </insert>
-
-    <delete id="deleteCart" parameterType="String">
-        DELETE FROM cart
-        WHERE username = #{username}
-    </delete>
-
-    <update id="updateCart" parameterType="String">
-        UPDATE cart
-        SET
-        price = #{1}
-        WHERE username = #{0}
-    </update>
 
     <insert id="insertCartItem">
         INSERT INTO
-        cart_item(username, i_id, num)
+        cart(username, i_id, num)
         VALUES (#{0}, #{1}, #{2})
     </insert>
 
     <delete id="deleteCartItem">
-        DELETE FROM cart_item
+        DELETE FROM cart
         WHERE username = #{0} AND i_id = #{1}
     </delete>
 
     <update id="updateCartItem">
-        UPDATE cart_item
+        UPDATE cart
         SET
         num = #{2}
         WHERE i_id = #{1} AND username = #{0}

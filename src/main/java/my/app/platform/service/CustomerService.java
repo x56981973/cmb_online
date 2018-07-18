@@ -11,20 +11,15 @@ import java.util.List;
 /**
  * @author 夏之阳
  *         创建时间：2018-07-10 15:14
- *         创建说明：买家业务
+ *         创建说明：顾客业务
  */
 @Service
 public class CustomerService {
     @Autowired
     ICustomerDao customerDao;
 
-    @Autowired
-    ICartDao cartDao;
-
     public int insertCustomer(Customer customer){
-        int result = customerDao.insertCustomer(customer);
-        if (result == 1){
-            cartDao.insertCart(customer.getUsername());
+        if (customerDao.insertCustomer(customer) == 1){
             return 1;
         } else {
             return 0;
@@ -49,7 +44,11 @@ public class CustomerService {
     }
 
     public int deleteCustomer(String username){
-        return customerDao.deleteCustomer(username);
+        if (customerDao.deleteCustomer(username) == 1){
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     public int count(){

@@ -18,9 +18,6 @@ public class OrderDetail {
     //订单总额
     private String total_price;
 
-    //卖家编号
-    private String s_id;
-
     //卖家用户名
     private String s_username;
 
@@ -38,9 +35,6 @@ public class OrderDetail {
 
     //订单状态
     private String status;
-
-    //买家编号
-    private String c_id;
 
     //买家用户名
     private String c_username;
@@ -108,14 +102,6 @@ public class OrderDetail {
         this.c_name = c_name;
     }
 
-    public String getC_id() {
-        return c_id;
-    }
-
-    public void setC_id(String c_id) {
-        this.c_id = c_id;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -138,14 +124,6 @@ public class OrderDetail {
 
     public void setI_id(String i_id) {
         this.i_id = i_id;
-    }
-
-    public String getS_id() {
-        return s_id;
-    }
-
-    public void setS_id(String s_id) {
-        this.s_id = s_id;
     }
 
     public String getS_name() {

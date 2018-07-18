@@ -89,8 +89,12 @@ public class LoginController {
         if(!password.matches("^([A-Za-z]|[0-9]|[!@#$*,.]){0,}$")){
             return "{\"error\":\"1\",\"msg\":\"密码包含非法字符\",\"to\":\"/login\"}";
         }
-        User user = loginService.loginCheck(username,password);
+        User user = loginService.loginCheck(username, password);
         if(user != null) {
+            if("2".equals(user.getStatus())){
+                return "{\"error\":\"1\",\"msg\":\"账号异常，请联系管理员\",\"to\":\"/login\"}";
+            }
+
             String role = user.getRole();
             String name = user.getName();
             setSession(username, name, role); //Set Session

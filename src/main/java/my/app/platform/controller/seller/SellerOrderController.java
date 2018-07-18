@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author 夏之阳
  *         创建时间：2018-07-16 01:38
- *         创建说明：
+ *         创建说明：卖家订单
  */
 
 @Controller

@@ -38,8 +38,8 @@
 
     <insert id="insertOrder" parameterType="my.app.platform.domain.Order">
         INSERT INTO
-        orders (o_id, date, price, c_id, s_id, payment, status, city, address, postcode, mobile)
-        VALUES (#{o_id}, #{date}, #{price}, #{c_id}, #{s_id}, #{payment}, #{status}, #{city}, #{address}, #{postcode}, #{mobile})
+        orders (date, price, c_id, s_id, payment, status, city, address, mobile)
+        VALUES (#{date}, #{price}, #{c_id}, #{s_id}, #{payment}, #{status}, #{city}, #{address}, #{mobile})
     </insert>
 
     <update id="confirmDeliver">
@@ -61,4 +61,10 @@
         orders (o_id, i_id, num, per_price)
         VALUES (#{o_id}, #{i_id}, #{num}, #{per_price})
     </insert>
+
+    <select id="getO_id" parameterType="my.app.platform.domain.view.OrderDetail" resultType="String">
+        SELECT o_id FROM orders
+        WHERE date = #{date} AND c_username = #{c_username}
+        ORDER BY date DESC, o_id DESC
+    </select>
 </mapper>

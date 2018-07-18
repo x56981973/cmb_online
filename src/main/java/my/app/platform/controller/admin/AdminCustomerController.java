@@ -70,7 +70,7 @@ public class AdminCustomerController {
         new_customer.setPassword(password);
         if (customerService.insertCustomer(new_customer) == 1) {
             String record = "添加顾客：" + username;
-//            setOptionRecord(record);
+            setOptionRecord(record);
 
             return "{\"error\":\"0\",\"msg\":\"添加成功\"}";
         } else {
@@ -83,7 +83,7 @@ public class AdminCustomerController {
     public String adminDelCustomer(String username){
         if(customerService.deleteCustomer(username) == 1){
             String record = "删除顾客：" + username;
-//            setOptionRecord(record);
+            setOptionRecord(record);
 
             return "{\"error\":\"0\",\"msg\":\"删除成功\"}";
         }else{
@@ -105,7 +105,7 @@ public class AdminCustomerController {
 
         if(customerService.updateCustomerByAdmin(customer) == 1){
             String record = "修改顾客：" + username;
-//            setOptionRecord(record);
+            setOptionRecord(record);
 
             return "{\"error\":\"0\",\"msg\":\"修改成功\"}";
         }else{

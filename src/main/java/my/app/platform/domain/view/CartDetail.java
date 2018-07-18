@@ -6,14 +6,9 @@ package my.app.platform.domain.view;
  *         创建说明：
  */
 public class CartDetail {
-    //购物车id
-    private String cart_id;
 
     //买家用户名
     private String username;
-
-    //总额
-    private String total_price;
 
     //商品id
     private String i_id;
@@ -21,13 +16,8 @@ public class CartDetail {
     //商品数量
     private int num;
 
-    public String getCart_id() {
-        return cart_id;
-    }
-
-    public void setCart_id(String cart_id) {
-        this.cart_id = cart_id;
-    }
+    //商品id
+    private String s_id;
 
     public String getUsername() {
         return username;
@@ -35,14 +25,6 @@ public class CartDetail {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getTotal_price() {
-        return total_price;
-    }
-
-    public void setTotal_price(String total_price) {
-        this.total_price = total_price;
     }
 
     public String getI_id() {
@@ -59,5 +41,13 @@ public class CartDetail {
 
     public void setNum(int num) {
         this.num = num;
+    }
+
+    public String getS_id() {
+        return s_id;
+    }
+
+    public void setS_id(String s_id) {
+        this.s_id = s_id;
     }
 }

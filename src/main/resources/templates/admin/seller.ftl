@@ -185,7 +185,7 @@
         var new_password = $('#new_password').val();
 
         if(new_name == ''){
-            swal("姓名不能为空","","error");
+            swal("名称不能为空","","error");
         } else if(new_username == ''){
             swal("用户名不能为空","","error");
         } else if(new_password == ''){
@@ -353,28 +353,40 @@
         var address = $('#edit_address').val();
         var status = $('#selector option:selected').val();
 
-        $.ajax({
-            url: '${base}/admin/seller/update',
-            type: 'POST',
-            data: $.param({'username':username,'name':name,'password':password,
-                'address':address,'status':status}),
-            success: function (result) {
-                var data = eval("(" + result + ")");
-                if (data.error == 0) {
-                    swal({
-                                title: data.msg,
-                                text: "",
-                                type: "success",
-                                confirmButtonText: "确认"
-                            },
-                            function(){
-                                location.reload();
-                            });
-                } else {
-                    swal(data.msg,"","error");
+        if(name == ''){
+            swal("名称不能为空","","error");
+        } else if(username == ''){
+            swal("用户名不能为空","","error");
+        } else if(password == ''){
+            swal("密码不能为空","","error");
+        } else if(address == ''){
+            swal("地址不能为空","","error");
+        } else {
+            $.ajax({
+                url: '${base}/admin/seller/update',
+                type: 'POST',
+                data: $.param({
+                    'username': username, 'name': name, 'password': password,
+                    'address': address, 'status': status
+                }),
+                success: function (result) {
+                    var data = eval("(" + result + ")");
+                    if (data.error == 0) {
+                        swal({
+                                    title: data.msg,
+                                    text: "",
+                                    type: "success",
+                                    confirmButtonText: "确认"
+                                },
+                                function () {
+                                    location.reload();
+                                });
+                    } else {
+                        swal(data.msg, "", "error");
+                    }
                 }
-            }
-        });
+            });
+        }
     })
 </script>
 

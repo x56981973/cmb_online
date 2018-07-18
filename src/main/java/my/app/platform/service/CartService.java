@@ -38,8 +38,6 @@ public class CartService {
 
         CartDetail cartDetail = cartDetailList.get(0);
         mCart.setUsername(cartDetail.getUsername());
-        mCart.setCart_id(cartDetail.getCart_id());
-        mCart.setTotal_price(cartDetail.getTotal_price());
 
         List<ItemDetail> itemList = new ArrayList<>();
         List<Integer> numList = new ArrayList<>();
@@ -53,6 +51,20 @@ public class CartService {
 
         mCart.setItemList(itemList);
         mCart.setNumList(numList);
+
+        double p = 0;
+        for (CartDetail cart : cartDetailList){
+            String i_id = cart.getI_id();
+            int num = cart.getNum();
+            ItemDetail itemDetail = itemService.queryItemByItemID(i_id);
+            if(itemDetail.getStock() != 0) {
+                double per_price = Double.parseDouble(itemDetail.getPrice());
+                p = p + per_price * num;
+            }
+        }
+
+        mCart.setTotal_price(Double.toString(p));
+
         return mCart;
     }
 
@@ -61,22 +73,22 @@ public class CartService {
      * @param username 用户名
      * @return 总价
      */
-    protected String calculateTotalPrice(String username){
-        List<CartDetail> cartDetailList = cartDao.queryCart(username);
-        if (cartDetailList.size() == 0){
-            return "0";
-        }
-        double p = 0;
-        for (CartDetail cartDetail : cartDetailList){
-            String i_id = cartDetail.getI_id();
-            int num = cartDetail.getNum();
-            ItemDetail itemDetail = itemService.queryItemByItemID(i_id);
-            double per_price = Double.parseDouble(itemDetail.getPrice());
-            p = p + per_price * num;
-        }
-
-        return Double.toString(p);
-    }
+//    public String calculateTotalPrice(String username){
+//        List<CartDetail> cartDetailList = cartDao.queryCart(username);
+//        if (cartDetailList.size() == 0){
+//            return "0";
+//        }
+//        double p = 0;
+//        for (CartDetail cartDetail : cartDetailList){
+//            String i_id = cartDetail.getI_id();
+//            int num = cartDetail.getNum();
+//            ItemDetail itemDetail = itemService.queryItemByItemID(i_id);
+//            double per_price = Double.parseDouble(itemDetail.getPrice());
+//            p = p + per_price * num;
+//        }
+//
+//        return Double.toString(p);
+//    }
 
     /**
      * 更新购物车数量
@@ -86,15 +98,7 @@ public class CartService {
      * @return 更新成功
      */
     public int updateNum(String i_id, int num, String username){
-        if(num == 0){
-            cartDao.deleteCartItem(username, i_id);
-        } else {
-            cartDao.updateCartItem(username, i_id, num);
-        }
-        String price = calculateTotalPrice(username);
-        cartDao.updateCart(username, price);
-
-        return 1;
+        return cartDao.updateCartItem(username, i_id, num);
     }
 
     /**
@@ -113,10 +117,20 @@ public class CartService {
             }
         }
 
-        cartDao.insertCartItem(username, i_id, "1");
-        String price = calculateTotalPrice(username);
-        cartDao.updateCart(username, price);
+        return cartDao.insertCartItem(username, i_id, "1");
+    }
 
-        return 1;
+    /**
+     * 删除购物车中的物品
+     * @param username 用户名
+     * @param i_id 商品id
+     * @return 删除成功
+     */
+    public int deleteCartItem(String username, String i_id){
+        if(cartDao.deleteCartItem(username, i_id) == 1){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 }

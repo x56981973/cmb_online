@@ -11,9 +11,6 @@ import java.util.List;
  *         创建说明：
  */
 public class MCart {
-    //购物车id
-    private String cart_id;
-
     //买家用户名
     private String username;
 
@@ -25,14 +22,6 @@ public class MCart {
 
     //总额
     private String total_price;
-
-    public String getCart_id() {
-        return cart_id;
-    }
-
-    public void setCart_id(String cart_id) {
-        this.cart_id = cart_id;
-    }
 
     public String getUsername() {
         return username;

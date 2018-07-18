@@ -2,6 +2,7 @@ package my.app.platform.service;
 
 import my.app.platform.domain.Order;
 import my.app.platform.domain.Order_Item;
+import my.app.platform.domain.model.MCart;
 import my.app.platform.domain.model.MOrder;
 import my.app.platform.domain.view.ItemDetail;
 import my.app.platform.domain.view.OrderDetail;
@@ -26,6 +27,9 @@ public class OrderService {
 
     @Autowired
     ItemService itemService;
+
+    @Autowired
+    CartService cartService;
 
     public List<MOrder> queryAllOrders(){
         List<MOrder> mOrderList = new ArrayList<>();
@@ -106,10 +110,8 @@ public class OrderService {
                 mOrder.setDate(orderDetail.getDate());
                 mOrder.setTotal_price(orderDetail.getTotal_price());
                 mOrder.setPayment(orderDetail.getPayment());
-                mOrder.setS_id(orderDetail.getS_id());
                 mOrder.setS_username(orderDetail.getS_username());
                 mOrder.setS_name(orderDetail.getS_name());
-                mOrder.setC_id(orderDetail.getC_id());
                 mOrder.setC_username(orderDetail.getC_username());
                 mOrder.setC_name(orderDetail.getC_name());
                 mOrder.setC_city(orderDetail.getC_city());
@@ -155,24 +157,22 @@ public class OrderService {
         Order_Item order_item = new Order_Item();
 
         Date d = new Date();
-        String o_id = String.valueOf(d.getTime());
-
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         String date = df.format(d);
 
-        order.setO_id(o_id);
         order.setDate(date);
-        order.setC_id(orderDetail.getC_id());
-        order.setS_id(orderDetail.getS_id());
-        order.setTotal_price(orderDetail.getTotal_price());
+        order.setC_username(orderDetail.getC_username());
+        order.setC_name(orderDetail.getC_name());
         order.setPayment(orderDetail.getPayment());
         order.setCity(orderDetail.getC_city());
         order.setAddress(orderDetail.getC_address());
-        order.setPostcode(orderDetail.getC_postcode());
         order.setMobile(orderDetail.getC_mobile());
-        order.setStatus(orderDetail.getStatus());
-        orderDao.insertOrder(order);
+        order.setStatus("2"); //待发货
+        if(orderDao.insertOrder(order) != 1){
+            return 0;
+        }
 
+        String o_id = orderDao.getO_id(order).get(0);
         order_item.setO_id(o_id);
         order_item.setI_id(orderDetail.getI_id());
         order_item.setNum(orderDetail.getNum());
@@ -181,6 +181,30 @@ public class OrderService {
 
         return 1;
     }
+
+    /**
+     * 订单划分
+     * @param username 用户名
+     * @return 根据商家划分订单
+     */
+    public List<OrderDetail> divideOrder(String username){
+        MCart mCart = cartService.queryCartByCustomer(username);
+        List<ItemDetail> itemList = mCart.getItemList();
+        List<Integer> numList = mCart.getNumList();
+
+        List<OrderDetail> orderDetailList = new ArrayList<>();
+        String s_username = "";
+        int length = itemList.size();
+        for(int i = 0; i < length; i++){
+            String new_s_username = itemList.get(i).getS_username();
+            if (new_s_username.equals(s_username)){
+
+            }
+        }
+
+        return null;
+    }
+
 
     public int confirmDeliver(String o_id){
         return orderDao.confirmDeliver(o_id);
@@ -191,7 +215,17 @@ public class OrderService {
     }
 
     public int count(){
-        return orderDao.queryAllOrder().size();
+        List<OrderDetail> orderDetailList = orderDao.queryAllOrder();
+        List<String> idList = new ArrayList<>();
+        String o_id = "";
+        for(OrderDetail orderDetail: orderDetailList){
+            String tmp = orderDetail.getO_id();
+            if (!o_id.equals(tmp)){
+                o_id = tmp;
+                idList.add(o_id);
+            }
+        }
+        return idList.size();
     }
 
     public int countBySellerUsername(String username){

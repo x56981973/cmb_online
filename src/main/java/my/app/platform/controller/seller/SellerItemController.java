@@ -120,7 +120,7 @@ public class SellerItemController {
         }
     }
 
-    @RequestMapping(value = "/item/updatePic", method = RequestMethod.POST)
+    @RequestMapping(value = "/item/update_pic", method = RequestMethod.POST)
     @ResponseBody
     public String sellerUpdateItem(MultipartFile pic, String i_id, String username){
         if(itemService.updatePic(pic, i_id, username) == 1){

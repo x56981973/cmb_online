@@ -23,9 +23,6 @@ public class MOrder {
     //订单总额
     private String total_price;
 
-    //卖家编号
-    private String s_id;
-
     //卖家用户名
     private String s_username;
 
@@ -40,9 +37,6 @@ public class MOrder {
 
     //订单状态
     private String status;
-
-    //买家编号
-    private String c_id;
 
     //买家用户名
     private String c_username;
@@ -89,14 +83,6 @@ public class MOrder {
         this.date = date;
     }
 
-    public String getS_id() {
-        return s_id;
-    }
-
-    public void setS_id(String s_id) {
-        this.s_id = s_id;
-    }
-
     public String getTotal_price() {
         return total_price;
     }
@@ -135,14 +121,6 @@ public class MOrder {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getC_id() {
-        return c_id;
-    }
-
-    public void setC_id(String c_id) {
-        this.c_id = c_id;
     }
 
     public String getC_name() {

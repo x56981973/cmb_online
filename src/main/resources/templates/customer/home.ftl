@@ -137,6 +137,9 @@
                                 text: "",
                                 type: "success",
                                 confirmButtonText: "确认"
+                            },
+                            function(){
+                                window.location.href="${base}/customer/cart";
                             });
                 } else {
                     swal(data.msg,"","error");
@@ -191,7 +194,7 @@
                                 confirmButtonText: "确认"
                             },
                             function(){
-                                window.location.href="${base}/customer/collection"
+                                window.location.href="${base}/customer/collection";
                             });
                 } else {
                     swal(data.msg,"","error");

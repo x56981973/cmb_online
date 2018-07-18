@@ -31,4 +31,6 @@ public interface IOrderDao {
     int confirmDeliver(String o_id);
 
     int confirmReceive(String o_id);
+
+    List<String> getO_id(Order order);
 }

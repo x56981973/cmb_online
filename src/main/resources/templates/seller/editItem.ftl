@@ -80,7 +80,7 @@
 
             var form = new FormData(document.getElementById("updateItem"));
             $.ajax({
-                url: '${base}/seller/item/updatePic',
+                url: '${base}/seller/item/update_pic',
                 type: 'POST',
                 data: form,
                 cache: false,

@@ -100,7 +100,7 @@ public class AdminItemController {
             itemService.updatePic(pic, i_id, username);
 
             String record = "新增商品：" + item.getDescription();
-//            setOptionRecord(record);
+            setOptionRecord(record);
 
             return "{\"error\":\"0\",\"msg\":\"新增成功\"}";
         }else{
@@ -113,7 +113,7 @@ public class AdminItemController {
     public String adminDelItem(String i_id){
         if(itemService.deleteItem(i_id) == 1){
             String record = "删除商品编号：" + i_id;
-//            setOptionRecord(record);
+            setOptionRecord(record);
 
             return "{\"error\":\"0\",\"msg\":\"删除成功\"}";
         }else{
@@ -126,7 +126,7 @@ public class AdminItemController {
     public String adminUpdateItem(Item item){
         if(itemService.updateItem(item) == 1){
             String record = "修改商品编号：" + item.getI_id();
-//            setOptionRecord(record);
+            setOptionRecord(record);
 
             return "{\"error\":\"0\",\"msg\":\"修改成功\"}";
         }else{
@@ -134,12 +134,12 @@ public class AdminItemController {
         }
     }
 
-    @RequestMapping(value = "/item/updatePic", method = RequestMethod.POST)
+    @RequestMapping(value = "/item/update_pic", method = RequestMethod.POST)
     @ResponseBody
     public String adminUpdateItem(MultipartFile pic, String i_id, String username){
         if(itemService.updatePic(pic, i_id, username) == 1){
             String record = "修改商品图片,编号：" + i_id;
-//            setOptionRecord(record);
+            setOptionRecord(record);
 
             return "{\"error\":\"0\",\"msg\":\"修改成功\"}";
         }else{
