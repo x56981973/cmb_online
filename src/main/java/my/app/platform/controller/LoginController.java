@@ -38,7 +38,7 @@ public class LoginController {
         if("seller".equals(session.getAttribute("role").toString())){
             return "redirect:/seller/home";
         } else if("customer".equals(session.getAttribute("role").toString())){
-            return "redirect:/customer";
+            return "redirect:/customer/home";
         } else {
             return "redirect:/admin/home";
         }
@@ -98,7 +98,7 @@ public class LoginController {
             if("seller".equals(role)){
                 return "{\"error\":\"0\",\"msg\":\"登陆成功\",\"to\":\"/seller/home\"}";
             } else if("customer".equals(role)){
-                return "{\"error\":\"0\",\"msg\":\"登陆成功\",\"to\":\"/customer\"}";
+                return "{\"error\":\"0\",\"msg\":\"登陆成功\",\"to\":\"/customer/home\"}";
             } else if ("admin".equals(role)){
 //                loginService.insertLoginRecord(request, username); //管理员登陆记录
                 return "{\"error\":\"0\",\"msg\":\"登陆成功\",\"to\":\"/admin/home\"}";

@@ -49,6 +49,17 @@ public class OrderService {
         }
     }
 
+    public List<MOrder> queryNotDoneOrderByCustomer(String username){
+        List<MOrder> mOrderList = new ArrayList<>();
+
+        List<OrderDetail> orderDetailList = orderDao.queryNotDoneOrderByCID(username);
+        if (orderDetailList.size() == 0){
+            return mOrderList;
+        } else {
+            return makeList(orderDetailList);
+        }
+    }
+
     public List<MOrder> queryOrderBySeller(String username){
         List<MOrder> mOrderList = new ArrayList<>();
 
@@ -183,11 +194,11 @@ public class OrderService {
         return orderDao.queryAllOrder().size();
     }
 
-    public int countByUsername(String username){
+    public int countBySellerUsername(String username){
         return queryOrderBySeller(username).size();
     }
 
-    public int countNDByUsername(String username){
+    public int countNDBySellerUsername(String username){
         return queryNotDoneOrderBySeller(username).size();
     }
 

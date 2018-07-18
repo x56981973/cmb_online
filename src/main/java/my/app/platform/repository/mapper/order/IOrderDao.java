@@ -16,6 +16,8 @@ public interface IOrderDao {
 
     List<OrderDetail> queryOrderByCID(String username);
 
+    List<OrderDetail> queryNotDoneOrderByCID(String username);
+
     List<OrderDetail> queryOrderBySID(String username);
 
     List<OrderDetail> queryDoneOrderBySID(String username);

@@ -12,6 +12,12 @@
         ORDER BY date DESC, o_id DESC
     </select>
 
+    <select id="queryNotDoneOrderByCID" parameterType="String" resultType="my.app.platform.domain.view.OrderDetail">
+        SELECT * FROM order_detail
+        WHERE c_username = #{username} AND ( status = 2 OR status = 3 )
+        ORDER BY date DESC, o_id DESC
+    </select>
+
     <select id="queryOrderBySID" parameterType="String" resultType="my.app.platform.domain.view.OrderDetail">
         SELECT * FROM order_detail
         WHERE s_username = #{username}

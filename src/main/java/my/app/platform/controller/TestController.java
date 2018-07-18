@@ -2,6 +2,8 @@ package my.app.platform.controller;
 
 import my.app.framework.web.Result;
 import my.app.framework.web.ResultHelper;
+import my.app.platform.domain.Customer;
+import my.app.platform.domain.view.ItemDetail;
 import my.app.platform.repository.mapper.admin.IAdminDao;
 import my.app.platform.repository.mapper.seller.ISellerDao;
 import my.app.platform.repository.mapper.user.IUserDao;
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author 夏之阳
@@ -49,8 +54,9 @@ public class TestController {
     @Autowired
     AdminService adminService;
 
-    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
     public Result testHandler() {
-        return ResultHelper.newSuccessResult(orderService.confirmDeliver("3"));
+
+        return ResultHelper.newSuccessResult(cartService.insertItem("1", "test"));
     }
 }

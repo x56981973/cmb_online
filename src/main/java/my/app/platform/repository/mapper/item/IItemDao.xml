@@ -15,6 +15,11 @@
         WHERE s_username = #{s_username}
     </select>
 
+    <select id="queryItemByClass" parameterType="String" resultType="my.app.platform.domain.view.ItemDetail">
+        SELECT * FROM item_detail
+        WHERE class_name = #{class_name}
+    </select>
+
     <update id="updateItem" parameterType="my.app.platform.domain.Item">
         UPDATE item
         SET

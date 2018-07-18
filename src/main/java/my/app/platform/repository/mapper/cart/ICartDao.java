@@ -12,17 +12,17 @@ import java.util.List;
  *         创建说明：
  */
 public interface ICartDao {
-    List<CartDetail> queryCart(String c_id);
+    List<CartDetail> queryCart(String username);
 
-    int insertCart(String c_id);
+    int insertCart(String username);
 
-    int deleteCart(String c_id);
+    int deleteCart(String username);
 
-    int updateCart(String c_id, String price);
+    int updateCart(String username, String price);
 
-    int insertCartItem(String c_id, String i_id, String num);
+    int insertCartItem(String username, String i_id, String num);
 
-    int deleteCartItem(String c_id, String i_id);
+    int deleteCartItem(String username, String i_id);
 
-    int updateCartItem(String c_id, String i_id, int num);
+    int updateCartItem(String username, String i_id, int num);
 }

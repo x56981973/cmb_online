@@ -14,8 +14,8 @@ public class MCart {
     //购物车id
     private String cart_id;
 
-    //买家id
-    private String c_id;
+    //买家用户名
+    private String username;
 
     //商品id列表
     private List<ItemDetail> itemList;
@@ -34,12 +34,12 @@ public class MCart {
         this.cart_id = cart_id;
     }
 
-    public String getC_id() {
-        return c_id;
+    public String getUsername() {
+        return username;
     }
 
-    public void setC_id(String c_id) {
-        this.c_id = c_id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public List<ItemDetail> getItemList() {

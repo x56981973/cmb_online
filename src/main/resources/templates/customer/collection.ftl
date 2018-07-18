@@ -9,12 +9,10 @@
                 <li class="breadcrumb-item">
                     <a href="${base}/customer/home">首页</a>
                     <i class="fa fa-angle-right"></i>
+                    <a href="${base}/customer/collection">收藏夹</a>
+                    <i class="fa fa-angle-right"></i>
                     <#if flag??>
-                        <#if flag == "search">
-                            搜索
-                        <#else>
-                            ${flag}
-                        </#if>
+                        搜索
                     </#if>
                 </li>
 
@@ -25,51 +23,51 @@
 
             <div class="grid-form" style="margin: 0">
                 <div class="grid-form1">
-                <form role="form" class="form-horizontal" style="margin: 0">
-                    <div class="form-group" style="margin: 0">
-                        <div class="col-md-12">
-                            <div class="input-group" style="padding: 0">
-                                <input type="text" class="form-control1" id="search_text">
-                                <div class="input-group-addon">
-                                    <a href="#" type="button" id="search_button" class="fa fa-search"></a>
+                    <form role="form" class="form-horizontal" style="margin: 0">
+                        <div class="form-group" style="margin: 0">
+                            <div class="col-md-12">
+                                <div class="input-group" style="padding: 0">
+                                    <input type="text" class="form-control1" id="search_text">
+                                    <div class="input-group-addon">
+                                        <a href="#" type="button" id="search_button" class="fa fa-search"></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
                 </div>
             </div>
 
             <div class="waterfall" id="waterfall-container">
             <#if (items?size > 0)>
                 <#list items as i>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <a>
-                            <img src="${base}/${i.detail}" >
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <button type="button" class="btn btn-default btn-xs" title="收藏"
-                                data-toggle="modal" data-target="#collectionModal" data-id="${i.i_id}" data-description="${i.description}">
-                            <span class="glyphicon glyphicon-heart"></span>
-                        </button>
-                        <button type="button" class="btn btn-default btn-xs pull-right" title="加入购物车"
-                                data-toggle="modal" data-target="#cartModal" data-id="${i.i_id}" data-description="${i.description}">
-                            <span class="glyphicon glyphicon-shopping-cart"></span>
-                        </button>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="media">
-                            <div class="media-body">
-                                <h4 class="media-heading">${i.description}
-                                    &nbsp;&nbsp;| &nbsp;&nbsp;
-                                    RMB: ${i.price} 元</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a>
+                                <img src="${base}/${i.detail}" >
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <button type="button" class="btn btn-default btn-xs" title="删除"
+                                    data-toggle="modal" data-target="#deleteModal" data-id="${i.i_id}" data-description="${i.description}">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                            <button type="button" class="btn btn-default btn-xs pull-right" title="加入购物车"
+                                    data-toggle="modal" data-target="#confirmModal" data-id="${i.i_id}" data-description="${i.description}">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                            </button>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h4 class="media-heading">${i.description}
+                                        &nbsp;&nbsp;| &nbsp;&nbsp;
+                                        RMB: ${i.price} 元</h4>
                                 ${i.s_name}
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
                 </#list>
             </#if>
             </div>
@@ -88,14 +86,14 @@
     $('#search_button').click(function(){
         var keyword = $('#search_text').val();
         if(keyword != ""){
-            window.location.href="${base}/customer/search?keyword="+ keyword;
+            window.location.href="${base}/customer/collection/search?keyword="+ keyword;
         } else {
-            window.location.href="${base}/customer/home";
+            window.location.href="${base}/customer/collection";
         }
     });
 </script>
 
-<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel">
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -106,7 +104,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <a class="btn btn-primary" id="checkCart">确认</a>
+                <a class="btn btn-primary" id="checkConfirm">确认</a>
             </div>
         </div>
     </div>
@@ -115,7 +113,7 @@
 <script type="text/javascript">
     var id = "";
 
-    $("#cartModal").on("show.bs.modal", function (event) {
+    $("#confirmModal").on("show.bs.modal", function (event) {
         var button = $(event.relatedTarget);
         var description = button.data("description");
         id = button.data("id");
@@ -123,7 +121,7 @@
         modal.find('.modal-body').text('确认将商品: '+ description + ' 加入购物车吗?');
     });
 
-    $("#checkCart").click(function(){
+    $("#checkConfirm").click(function(){
         $.ajax({
             url: '${base}/customer/add_to_cart',
             type: 'POST',
@@ -133,21 +131,21 @@
                 console.log(data);
                 if (data.error == 0) {
                     swal({
-                                title: data.msg,
-                                text: "",
-                                type: "success",
-                                confirmButtonText: "确认"
-                            });
+                        title: data.msg,
+                        text: "",
+                        type: "success",
+                        confirmButtonText: "确认"
+                    });
                 } else {
                     swal(data.msg,"","error");
                 }
             }
         });
-        $('#cartModal').modal('hide');
+        $('#confirmModal').modal('hide');
     })
 </script>
 
-<div class="modal fade" id="collectionModal" tabindex="-1" role="dialog" aria-labelledby="collectionModalLabel">
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -158,7 +156,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <a class="btn btn-primary" id="checkCollection">确认</a>
+                <a class="btn btn-primary" id="checkDelete">确认</a>
             </div>
         </div>
     </div>
@@ -167,17 +165,17 @@
 <script type="text/javascript">
     var id = "";
 
-    $("#collectionModal").on("show.bs.modal", function (event) {
+    $("#deleteModal").on("show.bs.modal", function (event) {
         var button = $(event.relatedTarget);
         var description = button.data("description");
         id = button.data("id");
         var modal = $(this);
-        modal.find('.modal-body').text('确认将商品: '+ description + ' 添加到收藏夹吗?');
+        modal.find('.modal-body').text('确认将商品: '+ description + ' 删除吗?');
     });
 
-    $("#checkCollection").click(function(){
+    $("#checkDelete").click(function(){
         $.ajax({
-            url: '${base}/customer/collection/add',
+            url: '${base}/customer/collection/delete',
             type: 'POST',
             data: $.param({'i_id':id}),
             success: function (result) {
@@ -191,14 +189,14 @@
                                 confirmButtonText: "确认"
                             },
                             function(){
-                                window.location.href="${base}/customer/collection"
+                                location.reload();
                             });
                 } else {
                     swal(data.msg,"","error");
                 }
             }
         });
-        $('#collectionModal').modal('hide');
+        $('#deleteModal').modal('hide');
     })
 </script>
 

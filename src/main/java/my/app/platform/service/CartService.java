@@ -25,19 +25,19 @@ public class CartService {
 
     /**
      * 查询用户的购物车
-     * @param c_id 用户id
+     * @param username 用户名
      * @return 购物车模型
      */
-    public MCart queryCartByCustomerID(String c_id){
+    public MCart queryCartByCustomer(String username){
         MCart mCart = new MCart();
 
-        List<CartDetail> cartDetailList = cartDao.queryCart(c_id);
+        List<CartDetail> cartDetailList = cartDao.queryCart(username);
         if (cartDetailList.size() == 0){
             return mCart;
         }
 
         CartDetail cartDetail = cartDetailList.get(0);
-        mCart.setC_id(cartDetail.getC_id());
+        mCart.setUsername(cartDetail.getUsername());
         mCart.setCart_id(cartDetail.getCart_id());
         mCart.setTotal_price(cartDetail.getTotal_price());
 
@@ -58,11 +58,11 @@ public class CartService {
 
     /**
      * 根据最新价格计算购物车总价
-     * @param c_id 用户id
+     * @param username 用户名
      * @return 总价
      */
-    protected String calculateTotalPrice(String c_id){
-        List<CartDetail> cartDetailList = cartDao.queryCart(c_id);
+    protected String calculateTotalPrice(String username){
+        List<CartDetail> cartDetailList = cartDao.queryCart(username);
         if (cartDetailList.size() == 0){
             return "0";
         }
@@ -82,40 +82,40 @@ public class CartService {
      * 更新购物车数量
      * @param i_id 商品编号
      * @param num 商品数量
-     * @param c_id 用户编号
+     * @param username 用户名
      * @return 更新成功
      */
-    public int updateNum(String i_id, int num, String c_id){
+    public int updateNum(String i_id, int num, String username){
         if(num == 0){
-            cartDao.deleteCartItem(c_id, i_id);
+            cartDao.deleteCartItem(username, i_id);
         } else {
-            cartDao.updateCartItem(c_id, i_id, num);
+            cartDao.updateCartItem(username, i_id, num);
         }
-        String price = calculateTotalPrice(c_id);
-        cartDao.updateCart(c_id, price);
+        String price = calculateTotalPrice(username);
+        cartDao.updateCart(username, price);
 
         return 1;
     }
 
     /**
      * 新加入购物车
-     * @param c_id 用户编号
+     * @param username 用户名
      * @param i_id 商品编号
      * @return 更新成功
      */
-    public int insertItem(String i_id, String c_id){
-        List<CartDetail> cartDetailList = cartDao.queryCart(c_id);
+    public int insertItem(String i_id, String username){
+        List<CartDetail> cartDetailList = cartDao.queryCart(username);
 
         for(CartDetail cartDetail : cartDetailList){
             if(i_id.equals(cartDetail.getI_id())){
                 int num = cartDetail.getNum() + 1;
-                return updateNum(i_id, num, c_id);
+                return updateNum(i_id, num, username);
             }
         }
 
-        cartDao.insertCartItem(c_id, i_id, "1");
-        String price = calculateTotalPrice(c_id);
-        cartDao.updateCart(c_id, price);
+        cartDao.insertCartItem(username, i_id, "1");
+        String price = calculateTotalPrice(username);
+        cartDao.updateCart(username, price);
 
         return 1;
     }

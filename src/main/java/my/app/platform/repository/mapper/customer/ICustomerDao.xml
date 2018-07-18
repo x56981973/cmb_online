@@ -21,14 +21,13 @@
         VALUES (#{username}, #{name}, #{password})
     </insert>
 
-    <update id="updateCustomer" parameterType="my.app.platform.domain.Customer">
+    <update id="updateCustomerByAdmin" parameterType="my.app.platform.domain.Customer">
         UPDATE customer
         SET
         name = #{name},
         password = #{password},
         city = #{city},
         address = #{address},
-        postcode = #{postcode},
         mobile = #{mobile},
         default_payment = #{default_payment},
         status = #{status}
@@ -40,4 +39,24 @@
         DELETE FROM customer
         WHERE username = #{username}
     </delete>
+
+    <update id="updateCustomerPwd" parameterType="String">
+        UPDATE customer
+        SET
+        name = #{1},
+        password = #{2}
+        WHERE
+        username = #{0}
+    </update>
+
+    <update id="updateAccountByCustomer" parameterType="my.app.platform.domain.Customer">
+        UPDATE customer
+        SET
+        name = #{name},
+        city = #{city},
+        address = #{address},
+        mobile = #{mobile}
+        WHERE
+        username = #{username}
+    </update>
 </mapper>

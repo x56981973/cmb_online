@@ -24,29 +24,19 @@ public class CustomerService {
     public int insertCustomer(Customer customer){
         int result = customerDao.insertCustomer(customer);
         if (result == 1){
-            Customer c = queryCustomerByUsername(customer.getUsername());
-            cartDao.insertCart(c.getC_id());
+            cartDao.insertCart(customer.getUsername());
             return 1;
         } else {
             return 0;
         }
     }
 
-    public int updateCustomer(Customer customer){
-        return customerDao.updateCustomer(customer);
+    public int updateCustomerByAdmin(Customer customer){
+        return customerDao.updateCustomerByAdmin(customer);
     }
 
     public List<Customer> queryAllCustomer(){
         return customerDao.queryAllCustomer();
-    }
-
-    public Customer queryCustomerByCustomerID(String c_id){
-        List<Customer> customerList = customerDao.queryCustomerByCID(c_id);
-        if (customerList.size() == 0){
-            return null;
-        } else {
-            return customerList.get(0);
-        }
     }
 
     public Customer queryCustomerByUsername(String username){
@@ -64,5 +54,17 @@ public class CustomerService {
 
     public int count(){
         return customerDao.queryAllCustomer().size();
+    }
+
+    public int updateAccountPwd(String username, String name, String password){
+        return customerDao.updateCustomerPwd(username, name, password);
+    }
+
+    public int updateAccountByCustomer(Customer customer){
+        return customerDao.updateAccountByCustomer(customer);
+    }
+
+    public String getId(String username){
+        return queryCustomerByUsername(username).getC_id();
     }
 }

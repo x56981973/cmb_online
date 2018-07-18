@@ -103,7 +103,7 @@ public class AdminCustomerController {
             return "{\"error\":\"1\",\"msg\":\"密码包含非法字符\"}";
         }
 
-        if(customerService.updateCustomer(customer) == 1){
+        if(customerService.updateCustomerByAdmin(customer) == 1){
             String record = "修改顾客：" + username;
 //            setOptionRecord(record);
 

@@ -12,13 +12,15 @@ import java.util.List;
 public interface ICustomerDao {
     List<Customer> queryAllCustomer();
 
-    List<Customer> queryCustomerByCID(String c_id);
-
     List<Customer> queryCustomerByName(String username);
 
     int insertCustomer(Customer customer);
 
-    int updateCustomer(Customer customer);
+    int updateCustomerByAdmin(Customer customer);
 
     int deleteCustomer(String username);
+
+    int updateCustomerPwd(String username, String name, String password);
+
+    int updateAccountByCustomer(Customer customer);
 }

@@ -57,6 +57,20 @@ public class ItemService {
     }
 
     /**
+     * 根据分类查询商品
+     * @param class_name 分类名
+     * @return 属于卖家的商品
+     */
+    public List<ItemDetail> queryItemByClass(String class_name) {
+        List<ItemDetail> itemList = itemDao.queryItemByClass(class_name);
+        if (itemList.size() != 0){
+            return itemList;
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * 更新商品
      * @param item 商品
      * @return 更新结果

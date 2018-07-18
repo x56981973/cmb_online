@@ -340,7 +340,7 @@
                     <div class="vali-form" id="editForm">
                         <div class="col-md-12 form-group1">
                             <label class="control-label">用户名</label>
-                            <input type="text" id="edit_username">
+                            <input type="text" id="edit_username" readonly>
                         </div>
                         <div class="clearfix" style="margin-bottom: 10px"> </div>
                         <div class="col-md-12 form-group1">
@@ -369,7 +369,7 @@
                         </div>
                         <div class="clearfix" style="margin-bottom: 10px"> </div>
                         <div class="col-md-12 form-group2 group-mail">
-                            <label class="control-label">状态</label>
+                            <label class="control-label">默认支付</label>
                             <select id="selector_payment">
                                 <option value="alipay" id="alipay" >支付宝</option>
                                 <option value="wechatpay" id="wechatpay" >微信</option>
@@ -442,28 +442,44 @@
         var payment = $('#selector_payment option:selected').val();
         var status = $('#selector_status option:selected').val();
 
-        $.ajax({
-            url: '${base}/admin/customer/update',
-            type: 'POST',
-            data: $.param({'username':username,'name':name,'password':password,'city':city,
-                            'address':address,'mobile':mobile,'default_payment':payment,'status':status}),
-            success: function (result) {
-                var data = eval("(" + result + ")");
-                if (data.error == 0) {
-                    swal({
-                                title: data.msg,
-                                text: "",
-                                type: "success",
-                                confirmButtonText: "确认"
-                            },
-                            function(){
-                                location.reload();
-                            });
-                } else {
-                    swal(data.msg,"","error");
+        if(name == ''){
+            swal("姓名不能为空","","error");
+        } else if(username == ''){
+            swal("用户名不能为空","","error");
+        } else if(password == ''){
+            swal("密码不能为空","","error");
+        } else if(city == ''){
+            swal("城市不能为空","","error");
+        } else if(address == ''){
+            swal("地址不能为空","","error");
+        } else if(mobile == ''){
+            swal("手机不能为空","","error");
+        } else {
+            $.ajax({
+                url: '${base}/admin/customer/update',
+                type: 'POST',
+                data: $.param({
+                    'username': username, 'name': name, 'password': password, 'city': city,
+                    'address': address, 'mobile': mobile, 'default_payment': payment, 'status': status
+                }),
+                success: function (result) {
+                    var data = eval("(" + result + ")");
+                    if (data.error == 0) {
+                        swal({
+                                    title: data.msg,
+                                    text: "",
+                                    type: "success",
+                                    confirmButtonText: "确认"
+                                },
+                                function () {
+                                    location.reload();
+                                });
+                    } else {
+                        swal(data.msg, "", "error");
+                    }
                 }
-            }
-        });
+            });
+        }
     })
 </script>
 

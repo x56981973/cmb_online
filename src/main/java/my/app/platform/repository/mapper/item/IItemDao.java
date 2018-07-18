@@ -18,6 +18,8 @@ public interface IItemDao {
 
     List<ItemDetail> queryItemBySeller(String username);
 
+    List<ItemDetail> queryItemByClass(String class_name);
+
     int updateItem(Item item);
 
     int addItem(Item item);

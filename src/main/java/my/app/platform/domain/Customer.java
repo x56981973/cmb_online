@@ -33,9 +33,6 @@ public class Customer {
     //默认支付
     private String default_payment;
 
-    //订单
-    private String orders;
-
     //角色
     private String role;
 
@@ -104,14 +101,6 @@ public class Customer {
 
     public void setDefault_payment(String default_payment) {
         this.default_payment = default_payment;
-    }
-
-    public String getOrders() {
-        return orders;
-    }
-
-    public void setOrders(String orders) {
-        this.orders = orders;
     }
 
     public String getRole() {
