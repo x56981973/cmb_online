@@ -1,7 +1,5 @@
 package my.app.platform.repository.mapper.cart;
 
-import my.app.platform.domain.Cart;
-import my.app.platform.domain.Cart_Item;
 import my.app.platform.domain.view.CartDetail;
 
 import java.util.List;

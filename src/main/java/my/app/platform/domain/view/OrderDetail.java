@@ -48,9 +48,6 @@ public class OrderDetail {
     //地址
     private String c_address;
 
-    //邮编
-    private String c_postcode;
-
     //电话
     private String c_mobile;
 
@@ -68,14 +65,6 @@ public class OrderDetail {
 
     public void setC_mobile(String c_mobile) {
         this.c_mobile = c_mobile;
-    }
-
-    public String getC_postcode() {
-        return c_postcode;
-    }
-
-    public void setC_postcode(String c_postcode) {
-        this.c_postcode = c_postcode;
     }
 
     public String getC_address() {

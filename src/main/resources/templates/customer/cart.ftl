@@ -32,9 +32,10 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <#if cart.itemList??>
                         <#if (cart.itemList?size > 0)>
                             <#list cart.itemList as i>
-                                <#if i.stock == 0>
+                                <#if i.stock <= 0>
                                     <tr>
                                         <td style="color: #999">${i.s_name}</td>
                                         <td style="color: #999">${i.description}</td>
@@ -78,6 +79,7 @@
                                     </tr>
                                 </#if>
                             </#list>
+                        </#if>
                         </#if>
                         </tbody>
                     </table>
@@ -149,7 +151,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <a class="btn btn-primary" id="postOrder">提交订单</a>
+                <a class="btn btn-primary" id="postOrder">提交</a>
             </div>
         </div>
     </div>
@@ -190,8 +192,8 @@
                 url: '${base}/customer/post_order',
                 type: 'POST',
                 data: $.param({
-                    'c_name': name, 'city': city, 'address': address,
-                    'mobile': mobile, 'payment': payment
+                    'c_name': name, 'c_city': city, 'c_address': address,
+                    'c_mobile': mobile, 'payment': payment
                 }),
                 success: function (result) {
                     var data = eval("(" + result + ")");
@@ -267,7 +269,7 @@
         });
         $('#deleteModal').modal('hide');
     })
-</script>>
+</script>
 
 <script type="text/javascript">
     function minus(id, num){

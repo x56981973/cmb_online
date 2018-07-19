@@ -16,7 +16,7 @@ public class CartDetail {
     //商品数量
     private int num;
 
-    //商品id
+    //商家id
     private String s_id;
 
     public String getUsername() {

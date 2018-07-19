@@ -33,6 +33,7 @@ public class CartService {
 
         List<CartDetail> cartDetailList = cartDao.queryCart(username);
         if (cartDetailList.size() == 0){
+            mCart.setTotal_price("0");
             return mCart;
         }
 
@@ -52,10 +53,22 @@ public class CartService {
         mCart.setItemList(itemList);
         mCart.setNumList(numList);
 
+        String total_price = calculateTotalPrice(cartDetailList);
+        mCart.setTotal_price(total_price);
+
+        return mCart;
+    }
+
+    /**
+     * 根据最新价格计算购物车总价
+     * @param cartDetailList 购物车列表
+     * @return 总价
+     */
+    private String calculateTotalPrice(List<CartDetail> cartDetailList){
         double p = 0;
-        for (CartDetail cart : cartDetailList){
-            String i_id = cart.getI_id();
-            int num = cart.getNum();
+        for (CartDetail cartDetail : cartDetailList){
+            String i_id = cartDetail.getI_id();
+            int num = cartDetail.getNum();
             ItemDetail itemDetail = itemService.queryItemByItemID(i_id);
             if(itemDetail.getStock() != 0) {
                 double per_price = Double.parseDouble(itemDetail.getPrice());
@@ -63,32 +76,8 @@ public class CartService {
             }
         }
 
-        mCart.setTotal_price(Double.toString(p));
-
-        return mCart;
+        return Double.toString(p);
     }
-
-    /**
-     * 根据最新价格计算购物车总价
-     * @param username 用户名
-     * @return 总价
-     */
-//    public String calculateTotalPrice(String username){
-//        List<CartDetail> cartDetailList = cartDao.queryCart(username);
-//        if (cartDetailList.size() == 0){
-//            return "0";
-//        }
-//        double p = 0;
-//        for (CartDetail cartDetail : cartDetailList){
-//            String i_id = cartDetail.getI_id();
-//            int num = cartDetail.getNum();
-//            ItemDetail itemDetail = itemService.queryItemByItemID(i_id);
-//            double per_price = Double.parseDouble(itemDetail.getPrice());
-//            p = p + per_price * num;
-//        }
-//
-//        return Double.toString(p);
-//    }
 
     /**
      * 更新购物车数量

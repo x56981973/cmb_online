@@ -69,9 +69,14 @@ public class CustomerOrderController {
     @ResponseBody
     public String postOrder(OrderDetail orderDetail){
         String username = session.getAttribute("username").toString();
-        orderDetail.setC_username(username);
-
-        return "{\"error\":\"0\",\"msg\":\"添加成功\"}";
+        int result = orderService.createOrder(username, orderDetail);
+        if(result == 1) {
+            return "{\"error\":\"0\",\"msg\":\"下单成功\"}";
+        } else if(result == -1){
+            return "{\"error\":\"1\",\"msg\":\"请添加商品至购物车\"}";
+        } else {
+            return "{\"error\":\"1\",\"msg\":\"下单失败\"}";
+        }
     }
 
     @RequestMapping(value = "/order/confirm")
@@ -79,7 +84,7 @@ public class CustomerOrderController {
     public String confirmOrder(String o_id){
         if(orderService.confirmReceive(o_id) == 1){
             return "{\"error\":\"0\",\"msg\":\"确认收货成功\"}";
-        }else{
+        } else {
             return "{\"error\":\"1\",\"msg\":\"确认收货失败\"}";
         }
     }

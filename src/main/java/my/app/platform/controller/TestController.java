@@ -4,6 +4,7 @@ import my.app.framework.web.Result;
 import my.app.framework.web.ResultHelper;
 import my.app.platform.domain.Customer;
 import my.app.platform.domain.view.ItemDetail;
+import my.app.platform.domain.view.OrderDetail;
 import my.app.platform.repository.mapper.admin.IAdminDao;
 import my.app.platform.repository.mapper.seller.ISellerDao;
 import my.app.platform.repository.mapper.user.IUserDao;
@@ -54,9 +55,8 @@ public class TestController {
     @Autowired
     AdminService adminService;
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public Result testHandler() {
-
-        return ResultHelper.newSuccessResult(cartService.insertItem("1", "test"));
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    public Result testHandler(String username, OrderDetail orderDetail) {
+        return ResultHelper.newSuccessResult(orderService.createOrder(username, orderDetail));
     }
 }

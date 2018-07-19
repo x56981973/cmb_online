@@ -6,36 +6,36 @@ package my.app.platform.domain;
  *         创建说明：购物车
  */
 public class Cart {
-    //购物车id
-    private String cart_id;
+    //用户名
+    private String username;
 
-    //买家id
-    private String c_id;
+    //商品编号
+    private String i_id;
 
-    //总额
-    private String price;
+    //商品数量
+    private int num;
 
-    public String getCart_id() {
-        return cart_id;
+    public String getUsername() {
+        return username;
     }
 
-    public void setCart_id(String cart_id) {
-        this.cart_id = cart_id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getC_id() {
-        return c_id;
+    public int getNum() {
+        return num;
     }
 
-    public void setC_id(String c_id) {
-        this.c_id = c_id;
+    public void setNum(int num) {
+        this.num = num;
     }
 
-    public String getPrice() {
-        return price;
+    public String getI_id() {
+        return i_id;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setI_id(String i_id) {
+        this.i_id = i_id;
     }
 }

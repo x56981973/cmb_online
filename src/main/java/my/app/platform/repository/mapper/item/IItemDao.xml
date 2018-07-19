@@ -3,6 +3,7 @@
 <mapper namespace="my.app.platform.repository.mapper.item.IItemDao">
     <select id="queryAllItem" resultType="my.app.platform.domain.view.ItemDetail">
         SELECT * FROM item_detail
+        ORDER BY i_id
     </select>
 
     <select id="queryItemByIId" parameterType="String" resultType="my.app.platform.domain.view.ItemDetail">
@@ -13,11 +14,13 @@
     <select id="queryItemBySeller" parameterType="String" resultType="my.app.platform.domain.view.ItemDetail">
         SELECT * FROM item_detail
         WHERE s_username = #{s_username}
+        ORDER BY i_id
     </select>
 
     <select id="queryItemByClass" parameterType="String" resultType="my.app.platform.domain.view.ItemDetail">
         SELECT * FROM item_detail
         WHERE class_name = #{class_name}
+        ORDER BY i_id
     </select>
 
     <update id="updateItem" parameterType="my.app.platform.domain.Item">
@@ -57,5 +60,6 @@
     <select id="queryItemByName" parameterType="String" resultType="my.app.platform.domain.view.ItemDetail">
         SELECT * FROM item_detail
         WHERE description = #{0} AND s_username = #{1}
+        ORDER BY o_id
     </select>
 </mapper>

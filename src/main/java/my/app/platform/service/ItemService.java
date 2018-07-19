@@ -107,6 +107,14 @@ public class ItemService {
     }
 
     /**
+     * 获取总数
+     * @return 总数
+     */
+    public int countBySeller(String username){
+        return itemDao.queryItemBySeller(username).size();
+    }
+
+    /**
      * 获取分类列表
      * @return 分类
      */

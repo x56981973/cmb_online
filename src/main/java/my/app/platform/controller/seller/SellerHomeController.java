@@ -32,7 +32,7 @@ public class SellerHomeController {
         String username = session.getAttribute("username").toString();
         int order_num = orderService.countBySellerUsername(username);
         int not_done_order_num = orderService.countNDBySellerUsername(username);
-        int item_num = itemService.count();
+        int item_num = itemService.countBySeller(username);
 
         model.addAttribute("username", username);
         model.addAttribute("name", name);

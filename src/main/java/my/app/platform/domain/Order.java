@@ -15,14 +15,14 @@ public class Order {
     //订单总额
     private String total_price;
 
+    //卖家编号
+    private String s_username;
+
     //买家编号
     private String c_username;
 
     //买家姓名
     private String c_name;
-
-    //卖家编号
-    private String s_username;
 
     //支付方式
     private String payment;
@@ -35,9 +35,6 @@ public class Order {
 
     //地址
     private String address;
-
-    //邮编
-    private String postcode;
 
     //电话
     private String mobile;
@@ -104,14 +101,6 @@ public class Order {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getPostcode() {
-        return postcode;
-    }
-
-    public void setPostcode(String postcode) {
-        this.postcode = postcode;
     }
 
     public String getMobile() {
