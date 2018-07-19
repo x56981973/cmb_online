@@ -8,8 +8,8 @@
     <artifactId>online</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <!--<name>online</name>-->
-    <!--<description>online platform</description>-->
+    <name>online</name>
+    <description>online platform</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -24,8 +24,8 @@
 
     <dependencies>
         <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-tomcat</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
         </dependency>
 
         <dependency>
