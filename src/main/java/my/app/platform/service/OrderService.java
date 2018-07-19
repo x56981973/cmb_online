@@ -323,6 +323,15 @@ public class OrderService {
         return queryNotDoneOrderBySeller(username).size();
     }
 
+    public String doneOrderAmount(String username){
+        List<MOrder> orderDetailList = queryDoneOrderBySeller(username);
+        double total = 0;
+        for(MOrder orderDetail : orderDetailList){
+            total += Double.parseDouble(orderDetail.getTotal_price());
+        }
+        return Double.toString(total);
+    }
+
     public String serializeItemList(MOrder mOrder){
         List<ItemDetail> itemList = mOrder.getItemList();
         List<Integer> numList = mOrder.getNumList();

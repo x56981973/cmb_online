@@ -27,7 +27,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text">
-                            <h1><strong>简 化 网 上 电 子 商 务 系 统 </strong> </h1>
+                            <h1><strong>简 易 电 子 商 务 系 统 </strong> </h1>
                             <div class="description">
                             	<p>
                                     <a href="#"><strong> 夏之阳: x56981973@sjtu.edu.cn</strong></a>

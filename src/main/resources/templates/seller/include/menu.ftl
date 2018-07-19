@@ -34,7 +34,7 @@
                     </li>
                     <li id="menu-academico-avaliacoes" >
                         <a href="${base}/seller/done_order">
-                            <i class="fa fa-check-circle"></i> &nbsp;&nbsp;&nbsp;&nbsp;已发货订单&nbsp;&nbsp;&nbsp;&nbsp;
+                            <i class="fa fa-check-circle"></i> &nbsp;&nbsp;&nbsp;&nbsp;已成交订单&nbsp;&nbsp;&nbsp;&nbsp;
                         </a>
                     </li>
                     <li id="menu-academico-avaliacoes" >

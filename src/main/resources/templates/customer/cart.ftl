@@ -91,18 +91,51 @@
                     <h2 style="color: #FFFFFF; margin-top: 10px;"> &nbsp; 合 计 : </h2>
                 </li>
 
-                <li style="float: right">
-                    <h2 style="color: #FFFFFF; margin-top: 10px;">
-                        <strong style="font-size: large">RMB: &nbsp;</strong>
+                <#if "${cart.total_price}" != "0.0">
+                    <li style="float: right">
+                        <h2 style="color: #FFFFFF; margin-top: 10px;">
+                            <strong style="font-size: large">RMB: &nbsp;</strong>
+                            ${cart.total_price}
+                            <strong style="font-size: large"> 元 &nbsp;</strong>
+                            <button class="btn bg-alert dark text-white text-center" style="margin-bottom: 0"
+                                    data-toggle="modal" data-target="#confirmModal">
+                                    <strong style="font-size: large"> 结算</strong>
+                            </button>
+                        </h2>
+                    </li>
+                <#else>
+                    <li style="float: right">
+                        <h2 style="color: #FFFFFF; margin-top: 10px;">
+                            <strong style="font-size: large">RMB: &nbsp;</strong>
                         ${cart.total_price}
-                        <strong style="font-size: large"> 元 &nbsp;</strong>
-                        <button class="btn bg-alert dark text-white text-center" style="margin-bottom: 0"
-                                data-toggle="modal" data-target="#confirmModal">
+                            <strong style="font-size: large"> 元 &nbsp;</strong>
+                            <button class="btn bg-alert dark text-white text-center" style="margin-bottom: 0"
+                                    data-toggle="modal" data-target="#alertModal">
                                 <strong style="font-size: large"> 结算</strong>
-                        </button>
-                    </h2>
-                </li>
+                            </button>
+                        </h2>
+                    </li>
+                </#if>
             </ol>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4>提示</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning" style="text-align: center">
+                    <h3>请添加商品到购物车</h3>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+            </div>
         </div>
     </div>
 </div>

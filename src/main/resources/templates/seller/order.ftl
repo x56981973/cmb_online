@@ -52,7 +52,7 @@
                                 <td>${o.date}</td>
                                 <td>${o.c_name}</td>
                                 <td>${o.s_name}</td>
-                                <td>${o.total_price}</td>
+                                <td>${o.total_price} 元</td>
                                 <td>
                                     <#if o.status == "1">
                                         已成交
@@ -234,7 +234,7 @@
         var modal = $(this);
         modal.find('#o_id').val(o_id);
         modal.find('#date').val(date);
-        modal.find('#total_price').val(total_price);
+        modal.find('#total_price').val(total_price  + " 元");
         modal.find('#c_name').val(c_name);
         modal.find('#city').val(city);
         modal.find('#address').val(address);
@@ -264,7 +264,7 @@
             var i = "<tr class='new_items'>" +
                     "   <td> " + i_id + "</td>" +
                     "   <td> " + description + "</td>" +
-                    "   <td> " + per_price + "</td>" +
+                    "   <td> " + per_price + " 元" + "</td>" +
                     "   <td> " + num + "</td>" +
                     "</tr>";
 

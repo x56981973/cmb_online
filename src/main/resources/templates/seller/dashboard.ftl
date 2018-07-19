@@ -22,7 +22,7 @@
                     <a href="${base}/seller/order">
                         <div class="four-agileinfo">
                             <div class="icon">
-                                <i class="glyphicon glyphicon-gift" aria-hidden="true"></i>
+                                <i class="glyphicon glyphicon-list-alt" aria-hidden="true"></i>
                             </div>
                             <div class="four-text">
                                 <h3>订单总数</h3>
@@ -64,11 +64,11 @@
                     <a href="#">
                         <div class="four-wthree">
                             <div class="icon">
-                                <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+                                <i class="glyphicon glyphicon-yen" aria-hidden="true"></i>
                             </div>
                             <div class="four-text">
-                                <h3>平均流量</h3>
-                                <h4> 10000 </h4>
+                                <h3>成交总额</h3>
+                                <h4> ${total_amount} </h4>
 
                             </div>
                         </div>

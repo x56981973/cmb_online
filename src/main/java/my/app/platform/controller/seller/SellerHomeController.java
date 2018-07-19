@@ -33,6 +33,7 @@ public class SellerHomeController {
         int order_num = orderService.countBySellerUsername(username);
         int not_done_order_num = orderService.countNDBySellerUsername(username);
         int item_num = itemService.countBySeller(username);
+        String total_amount = orderService.doneOrderAmount(username);
 
         model.addAttribute("username", username);
         model.addAttribute("name", name);
@@ -40,7 +41,7 @@ public class SellerHomeController {
         model.addAttribute("order_num", order_num);
         model.addAttribute("not_done_order_num", not_done_order_num);
         model.addAttribute("item_num", item_num);
-
+        model.addAttribute("total_amount", total_amount);
 
         return "/seller/dashboard";
     }
